@@ -122,4 +122,9 @@ class Logbox
             }
         }
     }
+
+    public static function theme_path()
+    {
+        return '/themes/default/';
+    }
 }

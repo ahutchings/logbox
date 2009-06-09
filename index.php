@@ -13,4 +13,4 @@ spl_autoload_register(array('Logbox', 'autoload'));
 
 set_error_handler(array('Logbox', 'errorHandler'));
 
-Logbox::import();
+include LOGBOX_PATH . Logbox::theme_path() . 'index.php';
