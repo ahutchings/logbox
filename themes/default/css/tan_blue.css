@@ -1,11 +1,5 @@
-/* This is the bare minimum needed to create your own theme.
-   In this example, all we're doing is overriding the default
-   color scheme with our own. In the real world, you'd probably
-   want to do more complex operations. */
-
 html, body { 
 	background-color:#EBE1D3;
-	/*padding-top: .3em;*/
 }
 h1, h2, h3 {
 	color: #222;
@@ -55,3 +49,13 @@ table thead { background-color:#685841;}
 
 ul.pager li a { padding:0.1em 0.3em; margin-right:0.3em; border:1px solid #ccc; text-decoration:none; color:#333; }
 ul.pager li.active a, ul.pager li a:hover { background-color:#685841; color:#fff; }
+
+#search label { display:none; }
+
+#messages thead { display:none; }
+#messages .bd { padding:0; }
+#messages .protocol { width:11px; padding:0; }
+#messages .aim { background:#ffffcc; }
+#messages .jabber { background:#ffe5cc; }
+#messages .msn { background:#ccf3ff; }
+#messages .yahoo { background:#ffcccc; }
