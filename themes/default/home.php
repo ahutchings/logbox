@@ -1,32 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
- "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-    <title>Logbox</title>
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo Logbox::theme_path() ?>css/yuiapp.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo Logbox::theme_path() ?>css/tan_blue.css" id="theme">
-</head>
-<body class="">
-    <div id="doc3" class="yui-t6">
-
-        <div id="hd">
-            <h1>Logbox</h1>
-            <div id="navigation">
-                <ul id="primary-navigation">
-                    <li class="active"><a href="#">Messages</a></li>
-                    <li><a href="#">Statistics</a></li>
-                </ul>
-
-                <ul id="user-navigation">
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-                <div class="clear"></div>
-            </div>
-        </div>
-
+<?php include 'header.php' ?>
         <div id="bd">
             <div id="yui-main">
                 <div class="yui-b"><div class="yui-g">
@@ -43,10 +15,13 @@
                         <div class="bd">
                             <form action="#" method="get">
                                 <p><label for="criteria">Criteria</label>
-                                    <input type="text" class="text" name="criteria" id="criteria" value="Enter a sender name and/or message content">
+                                    <input type="text" class="text" name="criteria" id="criteria">
                                 </p>
                                 <p><input type="submit" name="test4" id="test4" value="Search"></p>
                             </form>
+                            <script type="text/javascript">
+                            	$('#criteria').clearingInput({text: 'Enter a sender name and/or message content'});
+                            </script>
                         </div>
                     </div>
 
@@ -111,11 +86,4 @@
                 </div>
             </div>
         </div>
-
-        <div id="ft">
-            <p class="inner">Copyright &copy; <?php echo date('Y') ?> Logbox</p>
-        </div>
-
-    </div>
-</body>
-</html>
+<?php include 'footer.php' ?>

@@ -59,3 +59,5 @@ ul.pager li.active a, ul.pager li a:hover { background-color:#685841; color:#fff
 #messages .jabber { background:#ffe5cc; }
 #messages .msn { background:#ccf3ff; }
 #messages .yahoo { background:#ffcccc; }
+
+input.blur { color:#999; }

@@ -2,12 +2,12 @@
 
 class Controller
 {
-    static public function display_index()
+    static public function display_home()
     {
         $tpl = new Template();
 
         $tpl->messages = Message::get();
 
-        $tpl->display('index.php');
+        $tpl->display('home.php');
     }
 }
