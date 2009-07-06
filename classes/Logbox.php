@@ -2,6 +2,13 @@
 
 class Logbox
 {
+    /**
+     * autoload method
+     *
+     * @param string $class Class name
+     *
+     * @return null
+     */
     static function autoload($class)
     {
         require LOGBOX_PATH . '/classes/' . ucfirst($class) . '.php';
@@ -10,11 +17,11 @@ class Logbox
     /**
     * error handler
     *
-    * @param int $level Error level
+    * @param int    $level   Error level
     * @param string $message Error message
-    * @param string $file Filename the error was raised in
-    * @param int $line Line number the error was raised at
-    * @param array $context Existing variables at the time the error was raised
+    * @param string $file    Filename the error was raised in
+    * @param int    $line    Line number the error was raised at
+    * @param array  $context Existing variables at the time the error was raised
     *
     * @return bool
     */
@@ -40,6 +47,13 @@ class Logbox
         return true;
     }
 
+    /**
+     * retrieves a database handle
+     *
+     * @todo pull connection params from a config file
+     *
+     * @return object PDO instance
+     */
     static function get_db()
     {
         try {
@@ -51,6 +65,11 @@ class Logbox
         return $pdo;
     }
 
+    /**
+     * initial import action
+     *
+     * @return null
+     */
     static function import()
     {
         set_time_limit(1000000);
@@ -62,6 +81,7 @@ class Logbox
 
         $sth = $db->prepare($q);
 
+        // @todo move this into options database table
         $log_dir = 'C:/Users/Andrew/AppData/Roaming/.purple/logs';
 
         $protocols = array_diff(scandir($log_dir), array('.', '..'));
@@ -123,11 +143,25 @@ class Logbox
         }
     }
 
+    /**
+     * retrieves the theme path
+     *
+     * @todo move this into an options database table
+     *
+     * @return string
+     */
     public static function theme_path()
     {
         return '/themes/default/';
     }
 
+    /**
+     * retrieves a time difference in common vernacular
+     *
+     * @param int|string $time UNIX timestamp or parseable string
+     *
+     * @return string
+     */
     public static function fuzzy_time($time = null)
     {
         $time      = ($time == null) ? time() : $time;
