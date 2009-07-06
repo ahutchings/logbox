@@ -14,7 +14,7 @@
     <div id="doc3" class="yui-t6">
 
         <div id="hd">
-            <h1>Logbox</h1>
+            <h1><a href="/">Logbox</a></h1>
             <div id="navigation">
                 <ul id="primary-navigation">
                     <li class="active"><a href="#">Messages</a></li>

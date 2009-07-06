@@ -3,7 +3,6 @@
             <div id="yui-main">
                 <div class="yui-b"><div class="yui-g">
 
-                    <!-- Basic block with tabs -->
                     <div class="block tabs" id="search">
                         <div class="hd">
                             <ul>
@@ -13,11 +12,11 @@
                             <div class="clear"></div>
                         </div>
                         <div class="bd">
-                            <form action="#" method="get">
+                            <form action="/" method="get">
                                 <p><label for="criteria">Criteria</label>
                                     <input type="text" class="text" name="criteria" id="criteria">
                                 </p>
-                                <p><input type="submit" name="test4" id="test4" value="Search"></p>
+                                <p><input type="submit" value="Search"></p>
                             </form>
                             <script type="text/javascript">
                             	$('#criteria').clearingInput({text: 'Enter a sender name and/or message content'});

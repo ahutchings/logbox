@@ -1,54 +1,84 @@
-html, body { 
+html,body {
 	background-color:#EBE1D3;
 }
-h1, h2, h3 {
-	color: #222;
+
+h1,h2,h3 {
+	color:#222;
 }
-a { 
+
+a {
 	color:#0854C7;
-	text-decoration: none; 
+	text-decoration:none;
 }
-table thead { background-color:#685841;}
+
+table thead {
+	background-color:#685841;
+}
 
 #hd {
-	background-color: #967E59;
-}
-#hd h1{
-	color: #fff;	
-}
-#bd {
-	background-color: #fff;
-	color: #333;
+	background-color:#967E59;
 }
 
-#primary-navigation li.active a { background-color: #fff; color:#333;}
-#navigation {
-	background-color: #064780;
+#hd h1 a {
+	color:#fff;
 }
 
-.block .hd { background-color: #A0C2DE; color: #333; border-bottom: 5px solid #064780 }
+.block .hd {
+	background-color:#A0C2DE;
+	color:#333;
+	border-bottom:5px solid #064780;
+}
+
 .tabs .hd {
-	background-color: #064780;
-	border-bottom: 5px solid #A0C2DE;
+	background-color:#064780;
+	border-bottom:5px solid #A0C2DE;
 }
 
-.block .bd h2 { color:#967E59; }
-.block .bd h3 { color:#967E59; }
-.spaces .hd { background-color:transparent; }
-.spaces .hd ul li { background-color:#187a7a; }
-
-.tabs ul {
-	background-color: #064780;
+.spaces .hd {
+	background-color:transparent;
 }
 
-.tabs .hd ul li a:hover { background-color:#CDEFFF; 	color: #333;
+.spaces .hd ul li {
+	background-color:#064780;
+	margin-right:0.1em;
 }
 
-.tabs .hd ul li.active a { background-color:#A0C2DE !important; color:#333; text-decoration:none; }
-.spaces .hd ul li { background-color:#064780; margin-right:0.1em; }
+.tabs .hd ul li a:hover {
+	background-color:#CDEFFF;
+	color:#333;
+}
 
-ul.pager li a { padding:0.1em 0.3em; margin-right:0.3em; border:1px solid #ccc; text-decoration:none; color:#333; }
-ul.pager li.active a, ul.pager li a:hover { background-color:#685841; color:#fff; }
+.tabs .hd ul li.active a {
+	background-color:#A0C2DE !important;
+	color:#333;
+	text-decoration:none;
+}
+
+ul.pager li a {
+	margin-right:0.3em;
+	border:1px solid #ccc;
+	text-decoration:none;
+	color:#333;
+	padding:0.1em 0.3em;
+}
+
+ul.pager li.active a,ul.pager li a:hover {
+	background-color:#685841;
+	color:#fff;
+}
+
+#bd,#primary-navigation li.active a {
+	background-color:#fff;
+	color:#333;
+}
+
+#navigation,.tabs ul {
+	background-color:#064780;
+}
+
+.block .bd h2,.block .bd h3 {
+	color:#967E59;
+}
 
 #search label { display:none; }
 
