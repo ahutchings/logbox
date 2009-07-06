@@ -65,7 +65,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                	<?php foreach (Message::get() as $message): ?>
+                                	<?php foreach ($this->messages as $message): ?>
                                     <tr>
                                         <td class="protocol <?php echo $message->protocol ?>"></td>
                                         <td><?php echo $message->sender ?></td>

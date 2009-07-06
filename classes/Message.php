@@ -2,7 +2,7 @@
 
 class Message
 {
-    public function get_count()
+    static public function get_count()
     {
         $db = Logbox::get_db();
 
@@ -13,7 +13,12 @@ class Message
         return $count;
     }
 
-    public function get()
+    /**
+     * get a message or messages
+     *
+     * @return array An array of Message objects, or a single Message object, depending on request
+     */
+    static public function get()
     {
         $db = Logbox::get_db();
 
