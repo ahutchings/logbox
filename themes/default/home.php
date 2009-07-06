@@ -20,13 +20,16 @@
                             </form>
                             <script type="text/javascript">
                             	$('#criteria').clearingInput({text: 'Enter a sender name and/or message content'});
+                            	<?php if (isset($_GET['criteria'])): ?>
+                            	$('#criteria').val("<?php echo $_GET['criteria'] ?>").removeClass("blur");
+                            	<?php endif ?>
                             </script>
                         </div>
                     </div>
 
                     <div class="block" id="messages">
                         <div class="hd">
-                            <h2>Recent Messages<span style="float:right"><strong>1</strong> - <strong>12</strong> of <strong><?php echo Message::get_count() ?></strong></span></h2>
+                            <h2><?php if (isset($_GET['criteria'])): ?>Search results for: <strong><?php echo $_GET['criteria']?></strong><?php else: ?>Recent Messages<?php endif ?><span style="float:right"><strong>1</strong> - <strong>12</strong> of <strong><?php echo Message::get_count() ?></strong></span></h2>
                         </div>
                         <div class="bd">
                         	<table>

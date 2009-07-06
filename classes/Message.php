@@ -16,15 +16,46 @@ class Message
     /**
      * get a message or messages
      *
+     * @paramarray array Query parameters
+     *
      * @return array An array of Message objects, or a single Message object, depending on request
      */
-    static public function get()
+    static public function get($paramarray = array())
     {
         $db = Logbox::get_db();
 
-        $q = 'SELECT * FROM message ORDER BY sent_at DESC LIMIT 12';
+        // defaults
+        $where  = array();
+        $params = array();
+        $limit  = 12;
 
-        $messages = $db->query($q, PDO::FETCH_CLASS, __CLASS__);
+        if (isset($paramarray['criteria'])) {
+            $where[] = "(sender LIKE CONCAT('%',?,'%') OR content LIKE CONCAT('%',?,'%'))";
+            $params[] = $paramarray['criteria'];
+            $params[] = $paramarray['criteria'];
+        }
+
+        $q = "SELECT * FROM message ";
+
+        if (count($where) > 0) {
+            $q .= ' WHERE (' . implode(' AND ', $where) . ')';
+        }
+
+        $q .= " ORDER BY sent_at DESC LIMIT $limit";
+
+        try {
+            $sth = $db->prepare($q);
+
+            $sth->setFetchMode(PDO::FETCH_CLASS, 'Message', array());
+
+            $sth->execute($params);
+
+            $messages = $sth->fetchAll();
+        } catch (PDOException $e) {
+            trigger_error($e->getMessage());
+
+            return false;
+        }
 
         return $messages;
     }

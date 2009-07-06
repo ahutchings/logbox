@@ -6,7 +6,13 @@ class Controller
     {
         $tpl = new Template();
 
-        $tpl->messages = Message::get();
+        $params = array();
+
+        if (isset($_GET['criteria'])) {
+            $params['criteria'] = $_GET['criteria'];
+        }
+
+        $tpl->messages = Message::get($params);
 
         $tpl->display('home.php');
     }
