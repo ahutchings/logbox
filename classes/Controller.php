@@ -72,5 +72,4 @@ class Controller
 
         return call_user_func($controller_method);
     }
-
 }

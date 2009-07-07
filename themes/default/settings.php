@@ -17,6 +17,13 @@
                                     <input type="text" class="text" name="theme_path" id="theme_path" value="<?php echo Options::get('theme_path') ?>">
                                     <span class="info">Ex: /themes/default/</span>
                                 </p>
+                                <p><label for="timezone">Timezone</label>
+                                    <select id="timezone" name="timezone">
+                                    <?php foreach (Logbox::getTimezones() as $timezone): ?>
+                                        <option <?php if (Options::get('timezone') == $timezone): ?> selected="selected"<?php endif ?>><?php echo $timezone ?></option>
+                                    <?php endforeach ?>
+                                    </select>
+                                </p>
                                 <p><input type="submit" value="Apply"></p>
                             </form>
                         </div>
