@@ -2,7 +2,7 @@
 
 class SiteHandler
 {
-    static public function display_home()
+    public static function display_home()
     {
         $tpl = new Template();
 
@@ -18,11 +18,11 @@ class SiteHandler
         $tpl->display('home.php');
     }
 
-    static public function display_statistics()
+    public static function display_statistics()
     {
     }
 
-    static public function display_settings()
+    public static function display_settings()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             self::update_settings();
@@ -33,16 +33,16 @@ class SiteHandler
         $tpl->display('settings.php');
     }
 
-    static public function display_login()
+    public static function display_login()
     {
     }
 
-    static public function display_404()
+    public static function display_404()
     {
         header('HTTP/1.1 404 Not Found');
     }
 
-    static public function do_logout()
+    public static function do_logout()
     {
     }
 

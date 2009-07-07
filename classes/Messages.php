@@ -2,7 +2,7 @@
 
 class Messages
 {
-    static public function get_count()
+    public static function get_count()
     {
         $q = 'SELECT COUNT(1) FROM message';
 
@@ -18,7 +18,7 @@ class Messages
      *
      * @return array An array of Message objects, or a single Message object, depending on request
      */
-    static public function get($paramarray = array())
+    public static function get($paramarray = array())
     {
         // defaults
         $where  = array();
