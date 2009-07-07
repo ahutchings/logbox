@@ -10,7 +10,9 @@ class Options
 
             $sth = DB::connect()->prepare($q);
 
-            $value = $sth->execute(array($name))->fetchColumn();
+            $sth->execute(array($name));
+
+            $value = $sth->fetchColumn();
 
         } catch (PDOException $e) {
 

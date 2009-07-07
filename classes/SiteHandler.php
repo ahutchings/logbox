@@ -24,18 +24,35 @@ class SiteHandler
 
     static public function display_settings()
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            self::update_settings();
+        }
+
+        $tpl = new Template();
+
+        $tpl->display('settings.php');
     }
 
     static public function display_login()
     {
     }
 
+    static public function display_404()
+    {
+        header('HTTP/1.1 404 Not Found');
+    }
+
     static public function do_logout()
     {
     }
 
-    static public function display_404()
+    public static function update_settings()
     {
-        header('HTTP/1.1 404 Not Found');
+        $allowed = array('base_url', 'theme_path');
+        $options = array_intersect_key($_POST, array_fill_keys($allowed, true));
+
+        foreach ($options as $name => $value) {
+            Options::set($name, $value);
+        }
     }
 }
