@@ -25,7 +25,7 @@ class Controller
         }
 
         // format the request url before matching
-        $base_path   = parse_url('http://logbox.localhost/', PHP_URL_PATH);
+        $base_path   = parse_url(Options::get('base_url'), PHP_URL_PATH);
         $request_url = substr($request_parts['path'], strlen($base_path));
 
         // match a route

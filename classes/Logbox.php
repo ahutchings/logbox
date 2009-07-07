@@ -122,18 +122,6 @@ class Logbox
     }
 
     /**
-     * retrieves the theme path
-     *
-     * @todo move this into an options database table
-     *
-     * @return string
-     */
-    public static function theme_path()
-    {
-        return '/themes/default/';
-    }
-
-    /**
      * retrieves a time difference in common vernacular
      *
      * @param int|string $time UNIX timestamp or parseable string
