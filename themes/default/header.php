@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Logbox::theme_path() ?>css/yuiapp.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Logbox::theme_path() ?>css/tan_blue.css" id="theme">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo Logbox::theme_path() ?>scripts/jquery.clearinginput.js" type="text/javascript"></script>
 </head>
 <body class="">

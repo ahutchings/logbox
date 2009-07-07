@@ -27,21 +27,30 @@ class Message
         // defaults
         $where  = array();
         $params = array();
-        $limit  = 12;
+        $limit  = 20;
 
-        if (isset($paramarray['criteria'])) {
+        // extract overrides
+        $paramarray = array_intersect($paramarray, array('criteria', 'limit', 'offset'));
+        extract($paramarray);
+
+        if (isset($criteria)) {
             $where[] = "(sender LIKE CONCAT('%',?,'%') OR content LIKE CONCAT('%',?,'%'))";
-            $params[] = $paramarray['criteria'];
-            $params[] = $paramarray['criteria'];
+            $params[] = $criteria;
+            $params[] = $criteria;
         }
 
         $q = "SELECT * FROM message ";
 
-        if (count($where) > 0) {
+        if (count($where)) {
             $q .= ' WHERE (' . implode(' AND ', $where) . ')';
         }
 
-        $q .= " ORDER BY sent_at DESC LIMIT $limit";
+        $q .= " ORDER BY sent_at DESC";
+        $q .= " LIMIT $limit";
+
+        if (isset($offset)) {
+            $q .= " OFFSET $offset";
+        }
 
         try {
             $sth = $db->prepare($q);
