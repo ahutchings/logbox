@@ -13,4 +13,4 @@ spl_autoload_register(array('Logbox', 'autoload'));
 
 set_error_handler(array('Logbox', 'errorHandler'));
 
-Controller::display_home();
+Controller::dispatchRequest();

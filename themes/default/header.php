@@ -17,13 +17,13 @@
             <h1><a href="/">Logbox</a></h1>
             <div id="navigation">
                 <ul id="primary-navigation">
-                    <li class="active"><a href="#">Messages</a></li>
-                    <li><a href="#">Statistics</a></li>
+                    <li class="active"><a href="/">Messages</a></li>
+                    <li><a href="/statistics">Statistics</a></li>
                 </ul>
 
                 <ul id="user-navigation">
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="/settings">Settings</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 </ul>
                 <div class="clear"></div>
             </div>
