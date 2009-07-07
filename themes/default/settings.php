@@ -17,6 +17,10 @@
                                     <input type="text" class="text" name="theme_path" id="theme_path" value="<?php echo Options::get('theme_path') ?>">
                                     <span class="info">Ex: /themes/default/</span>
                                 </p>
+                                <p><label for="log_path">Log Path</label>
+                                    <input type="text" class="text" name="log_path" id="log_path" value="<?php echo Options::get('log_path') ?>">
+                                    <span class="info">Ex: /Users/Andrew/AppData/Roaming/.purple/logs/</span>
+                                </p>
                                 <p><label for="timezone">Timezone</label>
                                     <select id="timezone" name="timezone">
                                     <?php foreach (Logbox::getTimezones() as $timezone): ?>

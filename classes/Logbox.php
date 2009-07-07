@@ -59,13 +59,10 @@ class Logbox
 
         $sth = DB::connect()->prepare($q);
 
-        // @todo move this into options database table
-        $log_dir = 'C:/Users/Andrew/AppData/Roaming/.purple/logs';
-
-        $protocols = array_diff(scandir($log_dir), array('.', '..'));
+        $protocols = array_diff(scandir(Options::get('log_path')), array('.', '..'));
 
         foreach ($protocols as $protocol) {
-            $protocol_dir = $log_dir . '/' . $protocol;
+            $protocol_dir = Options::get('log_path') . '/' . $protocol;
             $accounts     = array_diff(scandir($protocol_dir), array('.', '..'));
 
             foreach ($accounts as $account) {
