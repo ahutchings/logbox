@@ -30,7 +30,8 @@ class Message
         $limit  = 20;
 
         // extract overrides
-        $paramarray = array_intersect($paramarray, array('criteria', 'limit', 'offset'));
+        $allowed    = array('criteria', 'limit', 'offset');
+        $paramarray = array_intersect_key($paramarray, array_fill_keys($allowed, true));
         extract($paramarray);
 
         if (isset($criteria)) {

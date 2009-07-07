@@ -10,6 +10,7 @@ class Controller
 
         if (isset($_GET['criteria'])) {
             $params['criteria'] = $_GET['criteria'];
+            $tpl->criteria      = $_GET['criteria'];
         }
 
         $tpl->messages = Message::get($params);
