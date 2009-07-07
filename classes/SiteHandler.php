@@ -13,7 +13,7 @@ class SiteHandler
             $tpl->criteria      = $_GET['criteria'];
         }
 
-        $tpl->messages = Message::get($params);
+        $tpl->messages = Messages::get($params);
 
         $tpl->display('home.php');
     }

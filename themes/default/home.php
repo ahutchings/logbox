@@ -29,7 +29,7 @@
 
                     <div class="block" id="messages">
                         <div class="hd">
-                            <h2><?php if (isset($this->criteria)): ?>Search results for: <strong><?php echo $this->criteria ?></strong><?php else: ?>Recent Messages<?php endif ?><span style="float:right"><strong>1</strong> - <strong>12</strong> of <strong><?php echo Message::get_count() ?></strong></span></h2>
+                            <h2><?php if (isset($this->criteria)): ?>Search results for: <strong><?php echo $this->criteria ?></strong><?php else: ?>Recent Messages<?php endif ?><span style="float:right"><strong>1</strong> - <strong>12</strong> of <strong><?php echo Messages::get_count() ?></strong></span></h2>
                         </div>
                         <div class="bd">
                         	<table>
