@@ -8,9 +8,7 @@ class Options
 
         try {
 
-            $db = Logbox::get_db();
-
-            $sth = $db->prepare($q);
+            $sth = DB::connect()->prepare($q);
 
             $value = $sth->execute(array($name))->fetchColumn();
 
@@ -31,9 +29,7 @@ class Options
 
         try {
 
-            $db = Logbox::get_db();
-
-            $sth = $db->prepare($q);
+            $sth = DB::connect()->prepare($q);
 
             $sth->execute(array($value, $name));
 
@@ -43,7 +39,7 @@ class Options
 
                 $q = 'INSERT INTO `option` (name, value) VALUES (?, ?)';
 
-                $sth = $db->prepare($q);
+                $sth = DB::connect()->prepare($q);
 
                 $sth->execute(array($name, $value));
 

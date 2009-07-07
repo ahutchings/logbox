@@ -4,11 +4,9 @@ class Message
 {
     static public function get_count()
     {
-        $db = Logbox::get_db();
-
         $q = 'SELECT COUNT(1) FROM message';
 
-        $count = $db->query($q)->fetchColumn();
+        $count = DB::connect()->query($q)->fetchColumn();
 
         return $count;
     }
@@ -22,8 +20,6 @@ class Message
      */
     static public function get($paramarray = array())
     {
-        $db = Logbox::get_db();
-
         // defaults
         $where  = array();
         $params = array();
@@ -54,7 +50,7 @@ class Message
         }
 
         try {
-            $sth = $db->prepare($q);
+            $sth = DB::connect()->prepare($q);
 
             $sth->setFetchMode(PDO::FETCH_CLASS, 'Message', array());
 

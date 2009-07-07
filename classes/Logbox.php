@@ -27,13 +27,11 @@ class Logbox
     */
     static function errorHandler($level, $message, $file, $line, $context)
     {
-        $db = self::get_db();
-
         $q = 'INSERT INTO log (level, file, line, message, created_at)'
             . ' VALUES (?, ?, ?, ?, FROM_UNIXTIME(?))';
 
         try {
-            $sth = $db->prepare($q);
+            $sth = DB::connect()->prepare($q);
 
             $file = str_replace(LOGBOX_PATH, '', $file);
 
@@ -48,24 +46,6 @@ class Logbox
     }
 
     /**
-     * retrieves a database handle
-     *
-     * @todo pull connection params from a config file
-     *
-     * @return object PDO instance
-     */
-    static function get_db()
-    {
-        try {
-            $pdo = new PDO('mysql:host=localhost;dbname=logbox', 'logbox', 'logbox');
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
-
-        return $pdo;
-    }
-
-    /**
      * initial import action
      *
      * @return null
@@ -74,12 +54,10 @@ class Logbox
     {
         set_time_limit(1000000);
 
-        $db = self::get_db();
-
         $q = 'INSERT INTO message (sent_at, protocol, sender, recipient, content)'.
             ' VALUES (FROM_UNIXTIME(:sentat), :protocol, :sender, :recipient, :content)';
 
-        $sth = $db->prepare($q);
+        $sth = DB::connect()->prepare($q);
 
         // @todo move this into options database table
         $log_dir = 'C:/Users/Andrew/AppData/Roaming/.purple/logs';
