@@ -3,33 +3,42 @@
             <div id="yui-main">
                 <div class="yui-b"><div class="yui-g">
 
-                    <div class="block tabs" id="search">
-                        <div class="hd">
-                            <ul>
-                                <li class="active"><a href="#">Search</a></li>
-                                <li><a href="#">Advanced Search</a></li>
-                            </ul>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="bd">
-                            <form action="/" method="get">
-                                <p><label for="criteria">Criteria</label>
-                                    <input type="text" class="text" name="criteria" id="criteria">
-                                </p>
-                                <p><input type="submit" value="Search"></p>
-                            </form>
-                            <script type="text/javascript">
-                            	$('#criteria').clearingInput({text: 'Enter a sender name and/or message content'});
-                            	<?php if (isset($this->criteria)): ?>
-                            	$('#criteria').val("<?php echo $this->criteria ?>").removeClass("blur");
-                            	<?php endif ?>
-                            </script>
-                        </div>
+                    <div id="search">
+                        <form action="/" method="get">
+                            <p>
+                            	<label for="criteria">Criteria</label>
+                                <input type="text" class="text" name="criteria" id="criteria">
+                           		<input type="submit" value="Search Messages">
+                           	</p>
+                        </form>
+                        <script type="text/javascript">
+                        	$('#criteria').clearingInput({text: 'Enter a sender name and/or message content'});
+                        	<?php if (isset($this->criteria)): ?>
+                        	$('#criteria').val("<?php echo $this->criteria ?>").removeClass("blur");
+                        	<?php endif ?>
+                        </script>
                     </div>
 
                     <div class="block" id="messages">
                         <div class="hd">
-                            <h2><?php if (isset($this->criteria)): ?>Search results for: <strong><?php echo $this->criteria ?></strong><?php else: ?>Recent Messages<?php endif ?><span style="float:right"><strong>1</strong> - <strong>12</strong> of <strong><?php echo Messages::get_count() ?></strong></span></h2>
+                            <span>
+                            	<select name="sender">
+                            		<option value="">Show all senders</option>
+                            	</select>
+                            	<select name="dates">
+                            		<option value="">Show all dates</option>
+                            	</select>
+                        	</span>
+                            <span style="float:right">
+                                <ul class="pager">
+                                    <li><a href="#">&#171; Prev</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">Next &#187;</a></li>
+                                </ul>
+                            </span>
                         </div>
                         <div class="bd">
                         	<table>
@@ -52,18 +61,6 @@
                                     <?php endforeach ?>
                                 </tbody>
                             </table>
-
-                            <ul class="pager">
-                                <li><a href="#">&#171; Prev</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">6</a></li>
-                                <li><a href="#">7</a></li>
-                                <li><a href="#">Next &#187;</a></li>
-                            </ul>
                         </div>
                     </div>
 

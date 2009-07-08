@@ -55,6 +55,7 @@ table thead {
 }
 
 ul.pager li a {
+	background:#FFF;
 	margin-right:0.3em;
 	border:1px solid #ccc;
 	text-decoration:none;
@@ -80,7 +81,9 @@ ul.pager li.active a,ul.pager li a:hover {
 	color:#967E59;
 }
 
+#search { text-align:right; }
 #search label { display:none; }
+#search #criteria { display:inline; width:inherit; }
 
 #messages thead { display:none; }
 #messages .bd { padding:0; }
