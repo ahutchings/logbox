@@ -19,6 +19,10 @@
                                     <input type="text" class="text" name="log_path" id="log_path" value="<?php echo Options::get('log_path') ?>">
                                     <span class="info">Ex: /Users/Andrew/AppData/Roaming/.purple/logs/</span>
                                 </p>
+                                <p><label for="pagination">Items per Page</label>
+                                    <input type="text" class="text" name="pagination" id="pagination" value="<?php echo Options::get('pagination') ?>">
+                                    <span class="info">Ex: 20</span>
+                                </p>
                                 <p><label for="timezone">Timezone</label>
                                     <select id="timezone" name="timezone">
                                     <?php foreach (Logbox::getTimezones() as $timezone): ?>

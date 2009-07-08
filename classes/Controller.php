@@ -58,8 +58,6 @@ class Controller
      */
     public static function dispatchRequest()
     {
-        global $request;
-
         $request = self::parseRequest();
 
         $controller = new $request['controller'];

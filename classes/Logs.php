@@ -7,7 +7,7 @@ class Logs
         // defaults
         $where  = array();
         $params = array();
-        $limit  = 20;
+        $limit  = is_numeric(Options::get('pagination')) ? Options::get('pagination') : 20;
 
         // extract overrides
         $allowed    = array('criteria', 'limit', 'offset');
