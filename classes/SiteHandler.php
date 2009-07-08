@@ -2,60 +2,61 @@
 
 class SiteHandler
 {
-    public static function display_home()
-    {
-        $tpl = new Template();
+    public $template = null;
 
+    public function __construct()
+    {
+        $this->template = new Template();
+    }
+
+    public function display_home()
+    {
         $params = array();
 
         if (isset($_GET['criteria'])) {
             $params['criteria'] = $_GET['criteria'];
-            $tpl->criteria      = $_GET['criteria'];
+            $this->template->criteria      = $_GET['criteria'];
         }
 
-        $tpl->messages = Messages::get($params);
+        $this->template->messages = Messages::get($params);
 
-        $tpl->display('home.php');
+        $this->template->display('home.php');
     }
 
-    public static function display_logs()
+    public function display_logs()
     {
-        $tpl = new Template();
+        $this->template->logs = Logs::get();
 
-        $tpl->logs = Logs::get();
-
-        $tpl->display('logs.php');
+        $this->template->display('logs.php');
     }
 
-    public static function display_statistics()
+    public function display_statistics()
     {
     }
 
-    public static function display_settings()
+    public function display_settings()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             self::update_settings();
         }
 
-        $tpl = new Template();
-
-        $tpl->display('settings.php');
+        $this->template->display('settings.php');
     }
 
-    public static function display_login()
+    public function display_login()
     {
     }
 
-    public static function display_404()
+    public function display_404()
     {
         header('HTTP/1.1 404 Not Found');
     }
 
-    public static function do_logout()
+    public function do_logout()
     {
     }
 
-    public static function update_settings()
+    public function update_settings()
     {
         $allowed = array('base_url', 'theme_path', 'timezone', 'log_path');
         $options = array_intersect_key($_POST, array_fill_keys($allowed, true));

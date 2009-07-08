@@ -7,7 +7,7 @@ class Controller
      *
      * @return array|bool Matched route or false
      */
-    static function parseRequest()
+    public static function parseRequest()
     {
         $routes = array(
             'index' => array('url' => '/\\A\\z/', 'controller' => 'SiteHandler', 'action' => 'display_home'),
@@ -54,23 +54,16 @@ class Controller
     /**
      * parses the request, sets up page variables, and directs to the correct page
      *
-     * @return mixed
+     * @return null
      */
-    static function dispatchRequest()
+    public static function dispatchRequest()
     {
         global $request;
 
         $request = self::parseRequest();
 
-        $controller_method = array($request['controller'], $request['action']);
+        $controller = new $request['controller'];
 
-        if (!is_callable($controller_method)) {
-
-            trigger_error('Unknown request action.', E_USER_ERROR);
-            return false;
-
-        }
-
-        return call_user_func($controller_method);
+        $controller->$request['action']();
     }
 }
