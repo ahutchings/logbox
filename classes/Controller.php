@@ -13,6 +13,7 @@ class Controller
             'index' => array('url' => '/\\A\\z/', 'controller' => 'SiteHandler', 'action' => 'display_home'),
             'statistics' => array('url' => '%^statistics/?\\z%', 'controller' => 'SiteHandler', 'action' => 'display_statistics'),
             'settings' => array('url' => '%^settings/?\\z%', 'controller' => 'SiteHandler', 'action' => 'display_settings'),
+        	'logs' => array('url' => '%^logs/?\\z%', 'controller' => 'SiteHandler', 'action' => 'display_logs'),
             'login' => array('url' => '%^login/?\\z%', 'controller' => 'SiteHandler', 'action' => 'display_login'),
             'logout' => array('url' => '%^logout/?\\z%', 'controller' => 'SiteHandler', 'action' => 'do_logout'),
             '404' => array('url' => '/\\A.*$/', 'controller' => 'SiteHandler', 'action' => 'display_404')

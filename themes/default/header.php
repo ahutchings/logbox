@@ -22,6 +22,7 @@
                 </ul>
 
                 <ul id="user-navigation">
+                	<li><a href="/logs">Logs</a></li>
                     <li><a href="/settings">Settings</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>

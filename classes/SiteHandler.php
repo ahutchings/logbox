@@ -18,6 +18,15 @@ class SiteHandler
         $tpl->display('home.php');
     }
 
+    public static function display_logs()
+    {
+        $tpl = new Template();
+
+        $tpl->logs = Logs::get();
+
+        $tpl->display('logs.php');
+    }
+
     public static function display_statistics()
     {
     }

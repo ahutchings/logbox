@@ -4,10 +4,8 @@
                 <div class="yui-a"><div class="yui-g">
 
                     <div class="block">
-                        <div class="hd">
-                            <h2>Settings</h2>
-                        </div>
                         <div class="bd">
+                            <h2>Settings</h2>
                             <form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post">
                                 <p><label for="base_url">Base URL</label>
                                     <input type="text" class="text" name="base_url" id="base_url" value="<?php echo Options::get('base_url') ?>">
