@@ -1,7 +1,3 @@
-html,body {
-	background-color:#EBE1D3;
-}
-
 h1,h2,h3 {
 	color:#222;
 }
@@ -12,11 +8,11 @@ a {
 }
 
 table thead {
-	background-color:#685841;
+	background-color:#464646;
 }
 
 #hd {
-	background-color:#967E59;
+	background-color:#464646;
 }
 
 #hd h1 a {
@@ -24,9 +20,9 @@ table thead {
 }
 
 .block .hd {
-	background-color:#A0C2DE;
+	background-color:#eaf3fa;
 	color:#333;
-	border-bottom:5px solid #064780;
+	border-bottom:2px solid #cee1ef;
 }
 
 .tabs .hd {
@@ -59,12 +55,13 @@ ul.pager li a {
 	margin-right:0.3em;
 	border:1px solid #ccc;
 	text-decoration:none;
-	color:#333;
+	color:#328ab2;
 	padding:0.1em 0.3em;
 }
 
 ul.pager li.active a,ul.pager li a:hover {
-	background-color:#685841;
+	background-color:#328ab2;
+	border-color:#328ab2;
 	color:#fff;
 }
 
@@ -73,12 +70,8 @@ ul.pager li.active a,ul.pager li a:hover {
 	color:#333;
 }
 
-#navigation,.tabs ul {
-	background-color:#064780;
-}
-
 .block .bd h2,.block .bd h3 {
-	color:#967E59;
+	color:#666;
 }
 
 #search { text-align:right; }
@@ -93,4 +86,4 @@ ul.pager li.active a,ul.pager li a:hover {
 #messages .msn { background:#ccf3ff; }
 #messages .yahoo { background:#ffcccc; }
 
-input.blur { color:#999; }
+tr.odd { background:#F8F8F8 }

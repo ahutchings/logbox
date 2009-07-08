@@ -3,5 +3,6 @@
         </div>
 
     </div>
+    <script src="<?php echo Options::get('theme_path') ?>scripts/theme.js" type="text/javascript"></script>
 </body>
 </html>

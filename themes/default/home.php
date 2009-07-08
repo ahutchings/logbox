@@ -11,12 +11,6 @@
                            		<input type="submit" value="Search Messages">
                            	</p>
                         </form>
-                        <script type="text/javascript">
-                        	$('#criteria').clearingInput({text: 'Enter a sender name and/or message content'});
-                        	<?php if (isset($this->criteria)): ?>
-                        	$('#criteria').val("<?php echo $this->criteria ?>").removeClass("blur");
-                        	<?php endif ?>
-                        </script>
                     </div>
 
                     <div class="block" id="messages">

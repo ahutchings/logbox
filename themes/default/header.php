@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Options::get('theme_path') ?>css/yuiapp.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Options::get('theme_path') ?>css/theme.css" id="theme">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js" type="text/javascript"></script>
-    <script src="<?php echo Options::get('theme_path') ?>scripts/jquery.clearinginput.js" type="text/javascript"></script>
 </head>
 <body class="">
     <div id="doc3" class="yui-t6">
