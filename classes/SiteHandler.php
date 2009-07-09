@@ -39,6 +39,7 @@ class SiteHandler
             ->fetchAll(PDO::FETCH_COLUMN);
 
         $dates = array_map(create_function('$date', 'return date("F Y", $date);'), $dates);
+        $dates = array_unique($dates);
 
         $this->template->dates = $dates;
 
