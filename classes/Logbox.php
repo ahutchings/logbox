@@ -193,7 +193,7 @@ class Logbox
         $limit     = isset($paramarray['limit']) ? $paramarray['limit'] : Options::get('pagination');
         $offset    = isset($paramarray['offset']) ? $paramarray['offset'] : 0;
         $current   = isset($paramarray['page']) ? $paramarray['page'] : ceil($offset / $limit);
-        $current   = ($page == 0) ? 1 : $current;
+        $current   = ($current == 0) ? 1 : $current;
         $has_query = (parse_url($url, PHP_URL_QUERY) == '') ? false : true;
 
         $class = new $class;
@@ -216,7 +216,7 @@ class Logbox
                 $prev_url = $url . '?page=' . ($current - 1);
             }
 
-            $out[] = '<li><a href="'.$prev_url.'">Prev</a></li>';
+            $out[] = '<li><a href="'.$prev_url.'">&#171; Prev</a></li>';
         }
 
         $pages[] = 1;
@@ -253,7 +253,7 @@ class Logbox
                 $next_url = $url . '?page=' . ($current + 1);
             }
 
-            $out[] = '<li><a href="'.$next_url.'">Next</a></li>';
+            $out[] = '<li><a href="'.$next_url.'">Next &#187;</a></li>';
         }
 
         $out[] = '</ul>';

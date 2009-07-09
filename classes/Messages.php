@@ -26,9 +26,13 @@ class Messages
         $limit  = is_numeric(Options::get('pagination')) ? Options::get('pagination') : 20;
 
         // extract overrides
-        $allowed    = array('criteria', 'limit', 'offset');
+        $allowed    = array('criteria', 'limit', 'offset', 'page');
         $paramarray = array_intersect_key($paramarray, array_fill_keys($allowed, true));
         extract($paramarray);
+
+        if (isset($page) && is_numeric($page) ) {
+            $offset = (intval($page) - 1) * intval($limit);
+        }
 
         if (isset($criteria)) {
             $where[] = "(sender LIKE CONCAT('%',?,'%') OR content LIKE CONCAT('%',?,'%'))";

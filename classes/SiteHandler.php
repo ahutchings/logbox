@@ -18,6 +18,11 @@ class SiteHandler
             $this->template->criteria = $_GET['criteria'];
         }
 
+        if (isset($_GET['page'])) {
+            $params['page']       = $_GET['page'];
+            $this->template->page = $_GET['page'];
+        }
+
         $this->template->messages = Messages::get($params);
         $this->template->pager    = Logbox::paginate('Messages', $params, 'http://logbox.localhost/');
 
