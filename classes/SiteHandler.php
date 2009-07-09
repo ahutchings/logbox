@@ -20,6 +20,22 @@ class SiteHandler
 
         $this->template->messages = Messages::get($params);
 
+        // retrieve senders for the select filter
+        $senders = DB::connect()
+            ->query('SELECT DISTINCT sender FROM message ORDER BY sender ASC')
+            ->fetchAll(PDO::FETCH_COLUMN);
+
+        $this->template->senders = $senders;
+
+        // retrieve dates for the select filter
+        $dates = DB::connect()
+            ->query('SELECT UNIX_TIMESTAMP(sent_at) FROM message ORDER BY sent_at DESC')
+            ->fetchAll(PDO::FETCH_COLUMN);
+
+        $dates = array_map(create_function('$date', 'return date("F Y", $date);'), $dates);
+
+        $this->template->dates = $dates;
+
         $this->template->display('home.php');
     }
 

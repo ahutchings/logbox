@@ -23,7 +23,7 @@
                                         <td><?php echo $log->created_at ?></td>
                                         <td><?php echo $log->level_friendly ?></td>
                                         <td><?php echo $log->message ?></td>
-                                        <td class="text-right"><a href="#">view</a> | <a href="#">edit</a> | <a href="#">delete</a></td>
+                                        <td class="text-right"><a href="#">view</a> | <a href="#">delete</a></td>
                                     </tr>
                                     <?php endforeach ?>
                                 </tbody>

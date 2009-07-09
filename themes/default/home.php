@@ -18,9 +18,15 @@
                             <span>
                             	<select name="sender">
                             		<option value="">Show all senders</option>
+                            		<?php foreach ($this->senders as $sender): ?>
+                            		<option><?php echo $sender ?></option>
+                            		<?php endforeach ?>
                             	</select>
                             	<select name="dates">
                             		<option value="">Show all dates</option>
+                            		<?php foreach ($this->dates as $date): ?>
+                            		<option><?php echo $date ?></option>
+                            		<?php endforeach ?>
                             	</select>
                         	</span>
                             <span style="float:right">
