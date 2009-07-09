@@ -101,7 +101,7 @@ class Messages
                     foreach ($sessions as $session) {
                         $session_path = $recipient_dir . '/' . $session;
 
-                        $message_regex = '/\((?P<sentat>.*)\) (?P<sender>.*?): (?P<content>.*)/';
+                        $message_regex = '/\((?P<sentat>.*?)\) (?P<sender>.*?): (?P<content>.*)/';
                         $status_regex  = '/\\((?P<sentat>.*)\\) (?P<sender>.*)\\ (?P<content>.*)/';
                         $session_regex = '/(?P<year>\\d{4})-(?P<month>\\d{2})-(?P<day>\\d{2}).(?P<hour>\\d{2})(?P<minute>\\d{2})(?P<second>\\d{2})/';
 
@@ -134,7 +134,8 @@ class Messages
                                 trigger_error('Event matched.', E_USER_NOTICE);
                                 // @todo save the status change
                             } else {
-                                trigger_error('Nothing matched!', E_USER_WARNING);
+                                $log = 'Unknown line type in file %s. Content: %s';
+                                trigger_error(sprintf($log, $session_path, $session_handle[$i]), E_USER_WARNING);
                             }
                         }
                     }
