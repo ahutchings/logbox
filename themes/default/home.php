@@ -30,14 +30,7 @@
                             	</select>
                         	</span>
                             <span style="float:right">
-                                <ul class="pager">
-                                    <li><a href="#">&#171; Prev</a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">Next &#187;</a></li>
-                                </ul>
+                            	<?php echo $this->pager ?>
                             </span>
                         </div>
                         <div class="bd">

@@ -14,11 +14,12 @@ class SiteHandler
         $params = array();
 
         if (isset($_GET['criteria'])) {
-            $params['criteria'] = $_GET['criteria'];
-            $this->template->criteria      = $_GET['criteria'];
+            $params['criteria']       = $_GET['criteria'];
+            $this->template->criteria = $_GET['criteria'];
         }
 
         $this->template->messages = Messages::get($params);
+        $this->template->pager    = Logbox::paginate('Messages', $params, 'http://logbox.localhost/');
 
         // retrieve senders for the select filter
         $senders = DB::connect()
