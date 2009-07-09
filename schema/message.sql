@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS message (
     recipient VARCHAR(255) NOT NULL,
     recipient_friendlyname VARCHAR(255) NOT NULL,
     content TEXT NOT NULL
-) ENGINE = InnoDB;
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
