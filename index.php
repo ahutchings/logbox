@@ -15,4 +15,6 @@ set_error_handler(array('Logbox', 'errorHandler'));
 
 date_default_timezone_set(Options::get('timezone'));
 
+//Logbox::import();
+
 Controller::dispatchRequest();

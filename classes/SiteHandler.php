@@ -55,6 +55,13 @@ class SiteHandler
 
     public function display_statistics()
     {
+
+        $q = 'SELECT sender, COUNT(1) AS count FROM message GROUP BY sender';
+        $messages_by_sender = DB::connect()->query($q)->fetchAll();
+
+        $this->template->messages_by_sender = $messages_by_sender;
+
+        $this->template->display('statistics.php');
     }
 
     public function display_settings()

@@ -19,7 +19,7 @@
                             	<select name="sender">
                             		<option value="">Show all senders</option>
                             		<?php foreach ($this->senders as $sender): ?>
-                            		<option><?php echo $sender ?></option>
+                            		<option><?php $this->eprint($sender) ?></option>
                             		<?php endforeach ?>
                             	</select>
                             	<select name="dates">

@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Options::get('theme_path') ?>css/yuiapp.css">
     <link rel="stylesheet" type="text/css" href="<?php echo Options::get('theme_path') ?>css/theme.css" id="theme">
+    <link rel="stylesheet" type="text/css" href="<?php echo Options::get('theme_path') ?>css/visualize.jQuery.css" id="visualize">
 </head>
 <body class="">
     <div id="doc3" class="yui-t6">
