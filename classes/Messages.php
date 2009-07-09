@@ -114,10 +114,13 @@ class Messages
                             // if we can match a message
                             if (preg_match($message_regex, $session_handle[$i], $message_match) === 1) {
 
-                                // Skip failed AIM messages
+                                // skip failed AIM messages
                                 if ($message_match['sender'] == 'Unable to send message') {
                                     continue;
                                 }
+
+                                // strip auto-reply text from the sender
+                                $message_match['sender'] = str_replace(' <AUTO-REPLY>', '', $message_match['sender']);
 
                                 $time = $session_match['year'] . '-' . $session_match['month'] . '-' . $session_match['day']
                                     . '' . $message_match['sentat'];
@@ -140,6 +143,7 @@ class Messages
                                 trigger_error('Event matched.', E_USER_NOTICE);
                                 // @todo save the status change
                             } else {
+                                // @todo this is probably a multiline message
                                 $log = 'Unknown line type in file %s. Content: %s';
                                 trigger_error(sprintf($log, $session_path, $session_handle[$i]), E_USER_WARNING);
                             }
