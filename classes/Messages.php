@@ -101,7 +101,7 @@ class Messages
                     foreach ($sessions as $session) {
                         $session_path = $recipient_dir . '/' . $session;
 
-                        $message_regex = '/\((?P<sentat>.*?)\) (?P<sender>.*?): (?P<content>.*)/';
+                        $message_regex = '/^\((?P<sentat>.*?)\) (?P<sender>.*?): (?P<content>.*)/';
                         $status_regex  = '/\\((?P<sentat>.*)\\) (?P<sender>.*)\\ (?P<content>.*)/';
                         $session_regex = '/(?P<year>\\d{4})-(?P<month>\\d{2})-(?P<day>\\d{2}).(?P<hour>\\d{2})(?P<minute>\\d{2})(?P<second>\\d{2})/';
 
@@ -113,6 +113,12 @@ class Messages
 
                             // if we can match a message
                             if (preg_match($message_regex, $session_handle[$i], $message_match) === 1) {
+
+                                // Skip failed AIM messages
+                                if ($message_match['sender'] == 'Unable to send message') {
+                                    continue;
+                                }
+
                                 $time = $session_match['year'] . '-' . $session_match['month'] . '-' . $session_match['day']
                                     . '' . $message_match['sentat'];
 
