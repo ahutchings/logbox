@@ -61,6 +61,12 @@ class SiteHandler
 
         $this->template->messages_by_sender = $messages_by_sender;
 
+        $q = 'SELECT YEAR(sent_at) year, MONTH(sent_at) month, COUNT(1) count FROM message GROUP BY YEAR(sent_at), MONTH(sent_at)';
+
+        $messages_by_month = DB::connect()->query($q)->fetchAll();
+
+        $this->template->messages_by_month = $messages_by_month;
+
         $this->template->display('statistics.php');
     }
 

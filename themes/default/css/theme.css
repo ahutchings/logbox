@@ -88,4 +88,4 @@ ul.pager li.active a,ul.pager li a:hover {
 
 tr.odd { background:#F8F8F8 }
 
-#messages-by-sender { display:none; }
+#messages-by-month, #messages-by-sender { display:none; }

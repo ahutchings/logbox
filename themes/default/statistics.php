@@ -25,6 +25,28 @@
                         </div>
                     </div>
 
+                    <div class="block">
+                        <div class="bd">
+                            <table id="messages-by-month">
+                            	<caption>Messages By Month</caption>
+                                <thead>
+                                    <tr>
+                                    	<td></td>
+                                        <th>Messages</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                	<?php foreach ($this->messages_by_month as $data): ?>
+                                    <tr>
+                                        <th><?php echo $data['year'] . '-' . $data['month'] ?></th>
+                                        <td><?php echo $data['count'] ?></td>
+                                    </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                 </div></div>
             </div>
         </div>
