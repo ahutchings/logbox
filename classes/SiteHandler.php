@@ -23,6 +23,17 @@ class SiteHandler
             $this->template->page = $_GET['page'];
         }
 
+        if (isset($_GET['dates'])) {
+            // @todo convert this into a usable format for Messages::get()
+            $params['dates']      = $_GET['dates'];
+            $this->template->date = $_GET['dates'];
+        }
+
+        if (isset($_GET['sender'])) {
+            $params['sender']       = $_GET['sender'];
+            $this->template->sender = $_GET['sender'];
+        }
+
         $this->template->messages = Messages::get($params);
         $this->template->pager    = Logbox::paginate('Messages', $params, 'http://logbox.localhost/');
 

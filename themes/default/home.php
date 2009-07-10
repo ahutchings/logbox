@@ -7,7 +7,7 @@
                     <div id="search">
                             <p>
                             	<label for="criteria">Criteria</label>
-                                <input type="text" class="text" name="criteria" id="criteria">
+                                <input type="text" class="text" name="criteria" id="criteria"<?php if (isset($this->criteria)): ?><?php echo ' value="' . $this->criteria . '"'; ?><?php endif ?>>
                            		<input type="submit" value="Search Messages">
                            	</p>
                     </div>
@@ -18,13 +18,13 @@
                             	<select name="sender" id="sender">
                             		<option value="">Show all senders</option>
                             		<?php foreach ($this->senders as $sender): ?>
-                            		<option><?php $this->eprint($sender) ?></option>
+                            		<option<?php if (isset($this->sender) && $this->sender == $sender): ?><?php echo ' selected="selected"'; ?><?php endif ?>><?php $this->eprint($sender) ?></option>
                             		<?php endforeach ?>
                             	</select>
                             	<select name="dates" id="dates">
                             		<option value="">Show all dates</option>
                             		<?php foreach ($this->dates as $date): ?>
-                            		<option><?php echo $date ?></option>
+                            		<option<?php if (isset($this->date) && $this->date == $date): ?><?php echo ' selected="selected"'; ?><?php endif ?>><?php echo $date ?></option>
                             		<?php endforeach ?>
                             	</select>
                         	</span>
