@@ -67,12 +67,13 @@ class SiteHandler
     public function display_statistics()
     {
 
-        $q = 'SELECT sender, COUNT(1) AS count FROM message GROUP BY sender';
+        $q = 'SELECT sender, COUNT(1) count FROM message GROUP BY sender ORDER BY count DESC LIMIT 10';
         $messages_by_sender = DB::connect()->query($q)->fetchAll();
+        shuffle($messages_by_sender);
 
         $this->template->messages_by_sender = $messages_by_sender;
 
-        $q = 'SELECT YEAR(sent_at) year, MONTH(sent_at) month, COUNT(1) count FROM message GROUP BY YEAR(sent_at), MONTH(sent_at)';
+        $q = 'SELECT UNIX_TIMESTAMP(sent_at) timestamp, YEAR(sent_at) year, MONTH(sent_at) month, COUNT(1) count FROM message GROUP BY YEAR(sent_at), MONTH(sent_at)';
 
         $messages_by_month = DB::connect()->query($q)->fetchAll();
 
