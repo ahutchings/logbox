@@ -6,14 +6,14 @@
                     <div class="block">
                         <div class="bd">
                             <h2>Log Entries</h2>
-                            <table>
+                            <table id="logs">
                                 <thead>
                                     <tr>
                                         <td><input type="checkbox" name="test10" id="test10" value=""></td>
                                         <td>Date &amp; Time</td>
                                         <td><a href="#">Severity</a></td>
                                         <td><a href="#">Message</a></td>
-                                        <td>&nbsp;</td>
+                                        <td><?php echo $this->pager ?></td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,15 +29,7 @@
                                 </tbody>
                             </table>
 
-                            <ul class="pager">
-                                <li><a href="#">&#171; Prev</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">Next &#187;</a></li>
-                            </ul>
-
+							<?php echo $this->pager ?>
                         </div>
                     </div>
 

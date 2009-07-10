@@ -59,7 +59,15 @@ class SiteHandler
 
     public function display_logs()
     {
-        $this->template->logs = Logs::get();
+        $params = array();
+
+        if (isset($_GET['page'])) {
+            $params['page']       = $_GET['page'];
+            $this->template->page = $_GET['page'];
+        }
+
+        $this->template->logs  = Logs::get($params);
+        $this->template->pager = Logbox::paginate('Logs', $params, 'http://logbox.localhost/logs');
 
         $this->template->display('logs.php');
     }

@@ -111,6 +111,8 @@ class Messages
 
                         for ($i = 1, $n = count($session_handle); $i < $n; $i++) {
 
+                            // @todo match file transfers
+
                             // if we can match a message
                             if (preg_match($message_regex, $session_handle[$i], $message_match) === 1) {
 
