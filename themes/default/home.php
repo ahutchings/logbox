@@ -2,27 +2,26 @@
         <div id="bd">
             <div id="yui-main">
                 <div class="yui-b"><div class="yui-g">
+                	<form action="/" method="get" id="messages-form">
 
                     <div id="search">
-                        <form action="/" method="get">
                             <p>
                             	<label for="criteria">Criteria</label>
                                 <input type="text" class="text" name="criteria" id="criteria">
                            		<input type="submit" value="Search Messages">
                            	</p>
-                        </form>
                     </div>
 
                     <div class="block" id="messages">
                         <div class="hd">
                             <span>
-                            	<select name="sender">
+                            	<select name="sender" id="sender">
                             		<option value="">Show all senders</option>
                             		<?php foreach ($this->senders as $sender): ?>
                             		<option><?php $this->eprint($sender) ?></option>
                             		<?php endforeach ?>
                             	</select>
-                            	<select name="dates">
+                            	<select name="dates" id="dates">
                             		<option value="">Show all dates</option>
                             		<?php foreach ($this->dates as $date): ?>
                             		<option><?php echo $date ?></option>
@@ -57,6 +56,7 @@
                         </div>
                     </div>
 
+                    </form>
                 </div></div>
             </div>
             <div id="sidebar" class="yui-b">
