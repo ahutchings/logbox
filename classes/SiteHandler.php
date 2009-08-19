@@ -67,12 +67,4 @@ class SiteHandler
 
         $this->template->display('statistics.php');
     }
-
-    public function display_login()
-    {
-    }
-
-    public function do_logout()
-    {
-    }
 }
