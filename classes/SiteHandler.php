@@ -68,30 +68,11 @@ class SiteHandler
         $this->template->display('statistics.php');
     }
 
-    public function display_settings()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            self::update_settings();
-        }
-
-        $this->template->display('settings.php');
-    }
-
     public function display_login()
     {
     }
 
     public function do_logout()
     {
-    }
-
-    public function update_settings()
-    {
-        $allowed = array('base_url', 'theme_path', 'timezone', 'log_path', 'pagination');
-        $options = array_intersect_key($_POST, array_fill_keys($allowed, true));
-
-        foreach ($options as $name => $value) {
-            Options::set($name, $value);
-        }
     }
 }
