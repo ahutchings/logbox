@@ -1,5 +1,3 @@
-<?php include 'header.php' ?>
-        <div id="bd">
             <div id="yui-main">
                 <div class="yui-a"><div class="yui-g">
 
@@ -8,8 +6,8 @@
                     		<h3>Top 10 Senders</h3>
                     	</div>
                         <div class="bd">
-                            <div id="messages-by-sender" style="height:220px;" />
-                        	<script id="source" language="javascript" type="text/javascript">
+                            <div id="messages-by-sender" style="height:220px;"></div>
+                        	<script language="javascript" type="text/javascript">
                             $(function () {
                                 var d1 = [
 								<?php for ($i = 0; $i < count($this->messages_by_sender); $i++): ?>
@@ -34,8 +32,8 @@
                     		<h3>Messages By Month</h3>
                     	</div>
                         <div class="bd">
-							<div id="messages-by-month" style="height:220px;" />
-                        	<script id="source" language="javascript" type="text/javascript">
+							<div id="messages-by-month" style="height:220px;"></div>
+                        	<script language="javascript" type="text/javascript">
                             $(function () {
                                 var d1 = [
 								<?php foreach ($this->messages_by_month as $data): ?>
@@ -51,5 +49,3 @@
 
                 </div></div>
             </div>
-        </div>
-<?php include 'footer.php' ?>
