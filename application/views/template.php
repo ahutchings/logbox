@@ -31,3 +31,21 @@
                 <div class="clear"></div>
             </div>
         </div>
+
+        <div id="bd">
+			<?php if ($message = Session::instance()->get_once('message')): ?>
+			<div class="message <?php echo $message['type'] ?>">
+			    <h4><?php echo $message['text'] ?></h4>
+			</div>
+			<?php endif ?>
+	
+			<?php echo $content; ?>
+		</div>
+
+		<div id="ft">
+            <p class="inner">Copyright &copy; <?php echo date('Y') ?> Logbox</p>
+        </div>
+
+    </div>
+</body>
+</html>

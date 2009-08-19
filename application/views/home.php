@@ -1,5 +1,3 @@
-<?php include 'header.php' ?>
-        <div id="bd">
             <div id="yui-main">
                 <div class="yui-b"><div class="yui-g">
                 	<form action="/" method="get" id="messages-form">
@@ -77,5 +75,3 @@
                     </div>
                 </div>
             </div>
-        </div>
-<?php include 'footer.php' ?>
