@@ -14,12 +14,12 @@
     
     <p>
         <label for="password">Password</label>
-        <input type="text" name="password" />
+        <input type="password" name="password" />
     </p>
 
     <p>
         <label for="password_confirm">Password (again)</label>
-        <input type="text" name="password_confirm" />
+        <input type="password" name="password_confirm" />
     </p>
 
 </form>

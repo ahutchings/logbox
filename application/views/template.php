@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-    <title>Logbox</title>
+    <title><?php if (isset($title)): ?><?php echo $title ?> - <?php endif ?>Logbox</title>
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css">
     <link rel="stylesheet" type="text/css" href="/css/yuiapp.css">
     <link rel="stylesheet" type="text/css" href="/css/theme.css" id="theme">
@@ -20,7 +20,7 @@
             <div id="navigation">
                 <ul id="primary-navigation">
                     <li class="active"><a href="/">Messages</a></li>
-                    <li><a href="/statistics">Statistics</a></li>
+                    <li><a href="/message/statistics">Statistics</a></li>
                 </ul>
 
                 <ul id="user-navigation">
