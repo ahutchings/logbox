@@ -24,6 +24,7 @@
                 </ul>
 
                 <ul id="user-navigation">
+                    <li><a href="/user">Users</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
                 <div class="clear"></div>

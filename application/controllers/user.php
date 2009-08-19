@@ -24,4 +24,13 @@ class User_Controller extends Template_Controller
 		
 		$this->template->content = $content;
 	}
+	
+	public function index()
+	{
+	    $content = new View('user/index');
+	    
+	    $content->users = ORM::factory('user')->find_all();
+	    
+	    $this->template->content = $content;
+	}
 }
