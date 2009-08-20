@@ -1,5 +1,5 @@
             <div id="yui-main">
-                <div class="yui-b"><div class="yui-g">
+                <div class="yui-a"><div class="yui-g">
                 	<form action="/" method="get" id="messages-form">
 
                     <div id="search">
@@ -56,22 +56,4 @@
 
                     </form>
                 </div></div>
-            </div>
-            <div id="sidebar" class="yui-b">
-
-                <div class="block">
-                    <div class="hd">
-                        <h2>Summary</h2>
-                    </div>
-                    <div class="bd">
-                        <p>Logged messages span <strong>8</strong>&nbsp;accounts,
-                        <strong>5</strong>&nbsp;protocols, and <strong>46</strong>
-                        contacts. In the past <strong>3</strong>&nbsp;years,
-                        <strong>5</strong>&nbsp;months, and <strong>21</strong>&nbsp;days,
-                        you have sent <strong>12,125</strong>&nbsp;messages
-                        and received <strong>13,256</strong>&nbsp;messages.</p>
-                        <p>The last message import occured <strong>4</strong>&nbsp;hours,
-                        <strong>21</strong>&nbsp;minutes ago.</p>
-                    </div>
-                </div>
             </div>
