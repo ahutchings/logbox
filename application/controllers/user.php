@@ -6,6 +6,7 @@ class User_Controller extends Template_Controller
 	{
 		$content = new View('user/create');
 		
+		$this->template->title   = 'Create a User';
 		$this->template->content = $content;
 	}
 	
@@ -15,6 +16,7 @@ class User_Controller extends Template_Controller
 		
 		$content->user = ORM::factory('user')->find($user_id);
 		
+		$this->template->title   = 'Edit a User';
 		$this->template->content = $content;
 	}
 	
@@ -24,6 +26,7 @@ class User_Controller extends Template_Controller
 	    
 	    $content->users = ORM::factory('user')->find_all();
 	    
+	    $this->template->title   = 'Users';
 	    $this->template->content = $content;
 	}
 	

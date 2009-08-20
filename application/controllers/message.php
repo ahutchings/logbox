@@ -6,6 +6,7 @@ class Message_Controller extends Template_Controller
 	{
 		$content = new View('message/statistics');
 		
+		$this->template->title   = 'Message Statistics';
 		$this->template->content = $content;
 	}
 }
