@@ -17,7 +17,7 @@ class Repository_Controller extends Template_Controller
 
 	private function create_repository()
 	{
-		$post       = $_POST;
+		$post       = $this->input->post();
 		$repository = ORM::factory('repository');
 		
 		if ($repository->validate($post, true)) {
@@ -26,6 +26,40 @@ class Repository_Controller extends Template_Controller
 		} else {
 			// @todo add error message
 			url::redirect('repository/create');
+		}
+	}
+	
+	public function edit($id)
+	{
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$this->do_edit();
+			return;
+		}
+		
+		$content = new View('repository/edit');
+
+		$content->repository = ORM::factory('repository')->find($id);
+
+		$content->type_options = array(
+			'0' => 'Pidgin (plain text)',
+			'1' => 'Adium (XML)'
+		);
+		
+		$this->template->title   = 'Edit a Repository';
+		$this->template->content = $content;
+	}
+	
+	private function do_edit()
+	{
+		$post       = $this->input->post();
+		$repository = ORM::factory('repository', $post['id']);
+		
+		if ($repository->validate($post, true)) {
+			Session::instance()->set_flash('message', array('type' => 'success', 'text' => 'Repository updated successfully.'));
+			url::redirect('repository');
+		} else {
+			// @todo add error message
+			url::redirect('repository/edit/'.$post['id']);
 		}
 	}
 	

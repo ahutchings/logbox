@@ -10,11 +10,11 @@ class User_Controller extends Template_Controller
 		$this->template->content = $content;
 	}
 	
-	public function edit($user_id)
+	public function edit($id)
 	{
 		$content = new View('user/edit');
 		
-		$content->user = ORM::factory('user')->find($user_id);
+		$content->user = ORM::factory('user')->find($id);
 		
 		$this->template->title   = 'Edit a User';
 		$this->template->content = $content;

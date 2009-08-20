@@ -14,6 +14,7 @@
 							<th>ID</th>
 							<th>Directory</th>
 							<th>Type</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -22,6 +23,7 @@
 							<td><?php echo $repository->id ?></td>
 							<td><?php echo $repository->directory ?></td>
 							<td><?php echo $repository->type ?></td>
+							<td><a href="<?php echo url::site('repository/edit/'.$repository->id) ?>">edit</a></td>
 						</tr>
 					<?php endforeach; ?>
 					</tbody>
