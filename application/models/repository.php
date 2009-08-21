@@ -12,21 +12,73 @@ class Repository_Model extends ORM
 		return parent::validate($array, $save);
 	}
 	
+	/**
+	 * Imports messages from a repository.
+	 *
+	 * @todo make child classes for each repository type so the switch isn't necessary
+ 	 *
+	 * @return bool
+	 */
+	public function import()
+	{
+	    set_time_limit(10000000);
+	    
+	    switch ($this->type) {
+	        case '0':
+	            $this->import_pidgin_plaintext();
+	        case '1':
+	            $this->import_adium_xml();
+	        default:
+	            return false;
+	    }
+	}
+	
+	/**
+	 * Imports messages from an Adium XML repository.
+	 *
+	 * @return bool
+	 */
+	public function import_adium_xml()
+	{   
+	    $account_dirs = array_diff(scandir($this->directory), array('.', '..'));
+	    
+	    foreach ($account_dirs as $account_dir) {
+	        $recipients = array_diff(scandir("$this->directory/$account_dir"), array('.', '..'));
+	        
+	        foreach ($recipient_dirs as $recipient_dir) {
+	            $session_dirs = array_diff(scandir("$this->directory/$account_dir/$recipient_dir"), array('.', '..'));
+	            
+	            foreach ($session_dirs as $session_dir) {
+	                $session = array_diff(scandir("$this->directory/$account_dir/$recipient_dir/$session_dir"), array('.', '..'));
+	                $xml     = simplexml_load_file("$this->directory/$account_dir/$recipient_dir/$session_dir/$session");
+	                $account = $xml['account'];
+
+	                foreach ($xml as $message_dom) {
+	                    $data = array(
+	                        sent_at => $message_dom['time'],
+	                        protocol => $xml['service'],
+	                        sender => $message_dom['sender'],
+	                        recipient => '', // @todo set this based on sender and session folder name
+	                        recipient_friendlyname => $message_dom['alias'],
+	                        content => $message_dom
+	                    );
+
+                        $message = new Message_Model();
+	                    $message->validate($data, true);
+	                }  
+	            }
+	        }
+	    }
+	}
+	
     /**
-     * initial import action
+     * Imports messages from a Pidgin plain text repository.
      *
-     * @return null
+     * @return bool
      */
-    public static function import()
+    public static function import_pidgin_plaintext()
     {
-        set_time_limit(1000000);
-
-        $q = 'INSERT INTO message (sent_at, protocol, sender, recipient, content)'.
-            ' VALUES (FROM_UNIXTIME(:sentat), :protocol, :sender, :recipient, :content)';
-
-        $sth = DB::connect()->prepare($q);
-
-        $protocols = array_diff(scandir(Options::get('log_path')), array('.', '..'));
+        $protocols = array_diff(scandir($this->directory), array('.', '..'));
 
         foreach ($protocols as $protocol) {
             $protocol_dir = Options::get('log_path') . '/' . $protocol;
@@ -69,19 +121,16 @@ class Repository_Model extends ORM
                                 $time = $session_match['year'] . '-' . $session_match['month'] . '-' . $session_match['day']
                                     . '' . $message_match['sentat'];
 
-                                $message = array(
-                                    ':sentat'    => strtotime($time),
-                                    ':protocol'  => $protocol,
-                                    ':sender'    => $message_match['sender'],
-                                    ':recipient' => $recipient,
-                                    ':content'   => $message_match['content']
+                                $data = array(
+                                    'sent_at'    => strtotime($time),
+                                    'protocol'  => $protocol,
+                                    'sender'    => $message_match['sender'],
+                                    'recipient' => $recipient,
+                                    'content'   => $message_match['content']
                                 );
 
-                                try {
-                                    $sth->execute($message);
-                                } catch (PDOException $e) {
-                                    trigger_error($e->getMessage(), E_USER_ERROR);
-                                }
+                                $message = new Message_Model();
+    	                        $message->validate($data, true);
 
                             } elseif (preg_match($status_regex, $session_handle[$i], $status_match) === 1) {
                                 trigger_error('Event matched.', E_USER_NOTICE);
