@@ -22,6 +22,7 @@
                     <li class="active"><a href="/">Messages</a></li>
                     <li><a href="/message/statistics">Statistics</a></li>
                     <li><a href="/repository">Repositories</a></li>
+                    <li><a href="/job">Jobs</a></li>
                 </ul>
 
                 <ul id="user-navigation">

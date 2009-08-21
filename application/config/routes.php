@@ -3,3 +3,4 @@
  * Sets the default route to "home"
  */
 $config['_default'] = 'home';
+$config['job/new']  = 'job/new_job';
