@@ -4,31 +4,44 @@ class Repository_Controller extends Template_Controller
 {
 	public function create()
 	{
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$this->create_repository();
-			return;
-		}
-		
-		$content = new View('repository/create');
+	    $this->template->content = View::factory('repository/new')
+	        ->bind('post', $post)
+//	        ->bind('errors', $errors)
+	        ->bind('cancel', $return)
+	        ->bind('delete', $delete);
+
+	    // Set return URL
+	    $return = url::site('repository');
+	
+	    // Do not overwrite POST
+	    $post = $this->input->post();
+	
+	    // Load a new repository
+	    $repository = ORM::factory('repository');
+	
+	    // Validate the repository
+	    $repository->validate($post, $return);
+	
+	    // Load errors
+//	    $errors = $repository->errors('forms.page');
+	        
+//		if ($repository->validate($post, true)) {
+//			Session::instance()->set_flash('message', array('type' => 'success', 'text' => 'Repository created successfully.'));
+//			url::redirect('repository');
+//		} else {
+//			// @todo add error message
+//			url::redirect('repository/create');
+//		}
+	}
+
+	public function new_repository()
+	{
+		$content = new View('repository/new');
 		
 		$this->template->title   = 'Create a Repository';
 		$this->template->content = $content;
 	}
 
-	private function create_repository()
-	{
-		$post       = $this->input->post();
-		$repository = ORM::factory('repository');
-		
-		if ($repository->validate($post, true)) {
-			Session::instance()->set_flash('message', array('type' => 'success', 'text' => 'Repository created successfully.'));
-			url::redirect('repository');
-		} else {
-			// @todo add error message
-			url::redirect('repository/create');
-		}
-	}
-	
 	public function edit($id)
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -4,3 +4,4 @@
  */
 $config['_default'] = 'home';
 $config['job/new']  = 'job/new_job';
+$config['repository/new']  = 'repository/new_repository';

@@ -6,7 +6,7 @@
             	<h2>Repositories</h2>
             </div>
             <div class="bd">
-            	<a href="/repository/create">Create a repository</a>
+            	<a href="/repository/new">Create a repository</a>
 				
 				<table>
 					<thead>
