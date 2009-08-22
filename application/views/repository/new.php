@@ -1,5 +1,13 @@
 <div id="yui-main">
 	<div class="yui-a"><div class="yui-g">
+	
+	<?php
+		if (isset($errors)) {
+			foreach ($errors as $error) {
+				echo $error;
+			}
+		}
+	?>
 
 		<div class="block">
             <div class="hd">

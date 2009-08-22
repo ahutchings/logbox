@@ -6,7 +6,7 @@ class Repository_Controller extends Template_Controller
 	{
 	    $this->template->content = View::factory('repository/new')
 	        ->bind('post', $post)
-//	        ->bind('errors', $errors)
+	        ->bind('errors', $errors)
 	        ->bind('cancel', $return)
 	        ->bind('delete', $delete);
 
@@ -23,15 +23,7 @@ class Repository_Controller extends Template_Controller
 	    $repository->validate($post, $return);
 	
 	    // Load errors
-//	    $errors = $repository->errors('forms.page');
-	        
-//		if ($repository->validate($post, true)) {
-//			Session::instance()->set_flash('message', array('type' => 'success', 'text' => 'Repository created successfully.'));
-//			url::redirect('repository');
-//		} else {
-//			// @todo add error message
-//			url::redirect('repository/create');
-//		}
+	    $errors = $post->errors('repository');
 	}
 
 	public function new_repository()
