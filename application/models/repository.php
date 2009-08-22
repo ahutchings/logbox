@@ -7,9 +7,45 @@ class Repository_Model extends ORM
 		$array = Validation::factory($array)
 			->pre_filter('trim')
 	    	->add_rules('directory', 'required')
-	    	->add_rules('type', 'required');
+	    	->add_rules('type', 'required')
+        	->add_callbacks('directory', array($this, 'unique_directory'))
+        	->add_callbacks('directory', array($this, 'readable_directory'));
 
 		return parent::validate($array, $save);
+	}
+
+	/**
+	 * Checks that the directory is unique.
+	 * 
+	 * @param Validation $array Validation object
+	 * @param string     $field Name of field being validated
+	 * 
+	 * @return null
+	 */
+	public function unique_directory(Validation $array, $field)
+	{
+		$exists = (bool) ORM::factory('repository')->where('directory', $array[$field])->count_all();
+ 
+		if ($exists) {
+			$array->add_error($field, 'directory_exists');
+		}
+	}
+	
+	/**
+	 * Checks that the directory exists and is readable.
+	 * 
+	 * @param Validation $array Validation object
+	 * @param string     $field Name of field being validated
+	 * 
+	 * @return null
+	 */
+	public function readable_directory(Validation $array, $field)
+	{
+		$readable = @opendir($array[$field]);
+		
+		if (!$readable) {
+			$array->add_error($field, 'directory_unreadable');	
+		}
 	}
 	
 	/**
