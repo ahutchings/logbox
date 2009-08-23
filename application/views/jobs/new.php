@@ -69,7 +69,7 @@
 	                    	</p>
                     	
                     	<input value="Submit" type="submit">
-                    </form>
+                    <?php echo form::close() ?>
                 </div>
             </div>
 

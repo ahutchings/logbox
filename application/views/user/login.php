@@ -6,7 +6,7 @@
             	<h2>Login</h2>
             </div>
             <div class="bd">
-				<form>
+				<?php echo form::open('user/login') ?>
 				    <p>
 				        <label for="username">Username</label>
 				        <input name="username" type="text" class="text" />
@@ -18,7 +18,7 @@
 				    </p>
 				    
 				    <button>Login</button>
-				</form>
+				<?php echo form::close() ?>
             </div>
 		</div>
 

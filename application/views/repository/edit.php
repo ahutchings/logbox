@@ -19,7 +19,7 @@
 				    </p>
 				    
 				    <p><button>Save</button></p>
-				</form>
+				<?php echo form::close() ?>
             </div>
 		</div>
 

@@ -28,7 +28,7 @@
 				    </p>
 				    
 				    <p><button>Create</button></p>
-				</form>
+				<?php echo form::close() ?>
             </div>
 		</div>
 

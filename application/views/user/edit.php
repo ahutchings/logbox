@@ -6,9 +6,8 @@
             	<h2>Edit a User</h2>
             </div>
             <div class="bd">
-				<form>
-					<input type="hidden" name="id" value="<?php echo $user->id ?>" />
-				    
+				<?php echo form::open('user/update') ?>
+					<?php echo form::hidden('id', $user->id) ?>
 				    <p>
 				        <label for="username">Username</label>
 				        <input type="text" name="username" value="<?php echo $user->username ?>" class="text" />
@@ -30,7 +29,7 @@
 				    </p>
 				
 					<p><button>Update</button></p>
-				</form>
+				<?php echo form::close() ?>
             </div>
 		</div>
 
