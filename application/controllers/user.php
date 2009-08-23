@@ -2,6 +2,30 @@
 
 class User_Controller extends Template_Controller
 {
+	public function create()
+	{
+	    $this->template->content = View::factory('user/new')
+	        ->bind('post', $post)
+	        ->bind('errors', $errors)
+	        ->bind('cancel', $return)
+	        ->bind('delete', $delete);
+
+	    // Set return URL
+	    $return = url::site('user');
+	
+	    // Do not overwrite POST
+	    $post = $this->input->post();
+	
+	    // Load a new repository
+	    $user = ORM::factory('user');
+	
+	    // Validate the repository
+	    $user->validate($post, $return);
+	
+	    // Load errors
+	    $errors = $post->errors('user');
+	}
+	
 	public function new_user()
 	{
 		$content = new View('user/new');
