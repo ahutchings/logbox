@@ -14,6 +14,7 @@
 							<th>ID</th>
 							<th>Username</th>
 							<th>Email</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -22,6 +23,7 @@
 					        <td><?php echo $user->id ?></td>
 					        <td><?php echo $user->username ?></td>
 					        <td><?php echo $user->email ?></td>
+					        <td><a href="<?php echo url::site("user/edit/$user->id") ?>">edit</a></td>
 					    </tr>
 					<?php endforeach ?>
 					</tbody>

@@ -28,30 +28,34 @@ class User_Controller extends Template_Controller
 	
 	public function new_user()
 	{
-		$content = new View('user/new');
-		
 		$this->template->title   = 'Create a User';
-		$this->template->content = $content;
+		$this->template->content = View::factory('user/new');
 	}
 	
 	public function edit($id)
 	{
-		$content = new View('user/edit');
-		
-		$content->user = ORM::factory('user')->find($id);
-		
 		$this->template->title   = 'Edit a User';
-		$this->template->content = $content;
+		
+		$this->template->content = View::factory('user/edit')
+			->set('roles', ORM::factory('role')->find_all())
+			->bind('user', $user)
+			->bind('user_roles', $user_roles);
+		
+		$user = ORM::factory('user')->find($id);
+
+		$user_roles = array();
+		 
+		foreach ($user->roles as $user_role) {
+			$user_roles[] = $user_role->id;
+		}
 	}
 	
 	public function index()
 	{
-	    $content = new View('user/index');
+	    $this->template->title = 'Users';
 	    
-	    $content->users = ORM::factory('user')->find_all();
-	    
-	    $this->template->title   = 'Users';
-	    $this->template->content = $content;
+	    $this->template->content = View::factory('user/index')
+	    	->set('users', ORM::factory('user')->find_all());
 	}
 	
     /*
@@ -79,5 +83,27 @@ class User_Controller extends Template_Controller
             Auth::instance()->login($user->username, $form['password']);
 			url::redirect('/user/login');
 		}
+	}
+	
+	public function update()
+	{
+		$post = $this->input->post();
+		
+		$user = ORM::factory('user', $this->input->post('id'));
+
+		// remove existing roles
+		foreach ($user->roles as $role) {
+			$user->remove(ORM::factory('role', $role->id));
+		}				
+		
+		$user->username = $post['username'];
+		$user->email    = $post['email'];
+		$user->roles    = $post['roles'];
+		
+		// @todo handle password changes
+		
+		$user->save();
+		
+		url::redirect('user');
 	}
 }
