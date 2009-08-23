@@ -2,9 +2,9 @@
 
 class User_Controller extends Template_Controller
 {
-	public function create()
+	public function new_user()
 	{
-		$content = new View('user/create');
+		$content = new View('user/new');
 		
 		$this->template->title   = 'Create a User';
 		$this->template->content = $content;
