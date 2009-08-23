@@ -16,4 +16,4 @@ CREATE TABLE IF NOT EXISTS `jobs` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 INSERT INTO `jobs` (`id`, `name`, `class`, `method`, `params`, `expression`, `priority`, `last_run`, `next_run`, `is_active`, `is_running`, `result`, `description`) VALUES
-(1, 'master', 'Job_Model', 'run_master', NULL, '* * * * *', 10, '2009-07-31 00:41:01', '2009-07-31 00:42:00', 1, 0, 1, 'Master Job. Used to determine if cron is active.');
+(1, 'master', 'Job_Model', 'process_queue', NULL, '* * * * *', 10, '2009-07-31 00:41:01', '2009-07-31 00:42:00', 1, 0, 1, 'Master Job. Used to determine if cron is active.');
