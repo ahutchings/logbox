@@ -5,7 +5,7 @@
                 <div class="bd">
                     <h2>Add a job</h2>
 
-                    <form action="/job/create/" id="job-create" method="post">
+                    <?php echo form::open('job/create') ?>
 	                    	<p>
 	                    		<label for="name">Name</label>
 	                    		<input name="name" id="name" size="45" type="text" class="text">

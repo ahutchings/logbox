@@ -14,7 +14,7 @@
             	<h2>Create a Repository</h2>
             </div>
             <div class="bd">
-				<form method="post" action="<?php echo url::site('repository/create') ?>">
+            	<?php echo form::open('repository/create') ?>
 				    <p>
 				        <label for="directory">Directory</label>
 				        <input type="text" name="directory" class="text" />

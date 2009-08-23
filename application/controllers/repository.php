@@ -36,11 +36,6 @@ class Repository_Controller extends Template_Controller
 
 	public function edit($id)
 	{
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$this->do_edit();
-			return;
-		}
-		
 		$content = new View('repository/edit');
 
 		$content->repository = ORM::factory('repository')->find($id);
@@ -54,7 +49,7 @@ class Repository_Controller extends Template_Controller
 		$this->template->content = $content;
 	}
 	
-	private function do_edit()
+	public function update()
 	{
 		$post       = $this->input->post();
 		$repository = ORM::factory('repository', $post['id']);

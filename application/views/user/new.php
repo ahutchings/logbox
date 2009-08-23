@@ -6,8 +6,7 @@
             	<h2>Create a User</h2>
             </div>
             <div class="bd">
-				<form>
-				    
+            	<?php echo form::open('user/create') ?>
 				    <p>
 				        <label for="username">Username</label>
 				        <input type="text" name="username" class="text" />
@@ -29,7 +28,6 @@
 				    </p>
 				    
 				    <p><button>Create</button></p>
-				
 				</form>
             </div>
 		</div>
