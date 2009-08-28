@@ -10,7 +10,7 @@ class Job_Controller extends Template_Controller
 		$this->template->content = $content;
 	}
 	
-	public function new_job()
+	public function add()
 	{
 		$this->template->content = new View('jobs/new');
 	}

@@ -26,7 +26,7 @@ class User_Controller extends Template_Controller
 	    $errors = $post->errors('user');
 	}
 	
-	public function new_user()
+	public function add()
 	{
 		$this->template->title   = 'Create a User';
 		$this->template->content = View::factory('user/new');

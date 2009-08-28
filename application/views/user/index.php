@@ -6,7 +6,7 @@
             	<h2>Users</h2>
             </div>
             <div class="bd">
-            	<a href="/user/new">Create a user</a>
+            	<a href="/user/add">Create a user</a>
 				
 				<table>
 					<thead>

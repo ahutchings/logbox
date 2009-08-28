@@ -2,7 +2,4 @@
 /**
  * Sets the default route to "home"
  */
-$config['_default']       = 'home';
-$config['job/new']        = 'job/new_job';
-$config['repository/new'] = 'repository/new_repository';
-$config['user/new']       = 'user/new_user';
+$config['_default'] = 'home';

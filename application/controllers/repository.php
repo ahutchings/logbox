@@ -26,7 +26,7 @@ class Repository_Controller extends Template_Controller
 	    $errors = $post->errors('repository');
 	}
 
-	public function new_repository()
+	public function add()
 	{
 		$content = new View('repository/new');
 		
