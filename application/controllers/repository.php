@@ -49,6 +49,12 @@ class Repository_Controller extends Template_Controller
 		$this->template->content = $content;
 	}
 	
+	public function show($id)
+	{
+		$this->template->content = View::factory('repository/view')
+			->set('repository', ORM::factory('repository')->find($id));
+	}
+	
 	public function update()
 	{
 		$post       = $this->input->post();
@@ -71,5 +77,14 @@ class Repository_Controller extends Template_Controller
 	    
 	    $this->template->title   = 'Repositories';
 	    $this->template->content = $content;		
+	}
+	
+	public function import($id)
+	{
+		$repository = ORM::factory('repository', $id);
+		
+		// @todo create import job
+		
+		url::redirect("repository/show/$repository->id");
 	}
 }

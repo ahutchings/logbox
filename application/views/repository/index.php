@@ -21,9 +21,9 @@
 					<?php foreach ($repositories as $repository): ?>
 						<tr>
 							<td><?php echo $repository->id ?></td>
-							<td><?php echo $repository->directory ?></td>
+							<td><a href="<?php echo url::site("repository/show/$repository->id") ?>"><?php echo $repository->directory ?></a></td>
 							<td><?php echo $repository->type ?></td>
-							<td><a href="<?php echo url::site('repository/edit/'.$repository->id) ?>">edit</a></td>
+							<td><a href="<?php echo url::site("repository/edit/$repository->id") ?>">edit</a></td>
 						</tr>
 					<?php endforeach; ?>
 					</tbody>
