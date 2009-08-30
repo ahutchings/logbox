@@ -83,8 +83,17 @@ class Repository_Controller extends Template_Controller
 	{
 		$repository = ORM::factory('repository', $id);
 		
-		// @todo create import job
+		// create import job
+		$job = new Job_Model();
+		$job->name = "Import repository: $repository->directory"; 
+		$job->class = 'Repository_Model';
+		$job->method = 'import_by_id';
+		$job->params = serialize(array($repository->id));
+		$job->priority = '1';
+		$job->next_run = '0000-00-00 00:00:00';
+
+		$job->save();
 		
-		url::redirect("repository/show/$repository->id");
+		url::redirect("repository");
 	}
 }

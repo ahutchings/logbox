@@ -70,6 +70,20 @@ class Repository_Model extends ORM
 	}
 	
 	/**
+	 * Imports messages from a repository.
+	 * 
+	 * @param int $id Repository ID
+	 * 
+	 * @return bool
+	 */
+	public static function import_by_id($id)
+	{
+		$repository = ORM::factory('repository', $id);
+		
+		return $repository->import();
+	}
+	
+	/**
 	 * Imports messages from an Adium XML repository.
 	 *
 	 * @return bool
@@ -166,8 +180,8 @@ class Repository_Model extends ORM
                                 );
 
                                 $message = new Message_Model();
-    	                        $message->validate($data, true);
-
+    	                        $message->validate($data, true);                                	
+                                
                             } elseif (preg_match($status_regex, $session_handle[$i], $status_match) === 1) {
                                 trigger_error('Event matched.', E_USER_NOTICE);
                                 // @todo save the status change

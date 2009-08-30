@@ -18,6 +18,9 @@ class Job_Controller extends Template_Controller
 	// @todo put this in a controller that doesn't use templates (no output)
 	public function initialize()
 	{
+		// @todo remove this workaround for the template controller
+		$this->template->content = '';
+		
 		// Call bootstrap method synchronously
 		Job_Model::bootstrap(false);
 	}
