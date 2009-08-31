@@ -4,8 +4,7 @@ class Home_Controller extends Template_Controller
 {
 	public function index()
 	{
-		$content = new View('home');
-		
-		$this->template->content = $content;
+		$this->template->content = View::factory('home')
+		    ->set('messages', ORM::factory('message')->find_all(30));
 	}
 }

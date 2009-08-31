@@ -5,7 +5,7 @@
                     <div id="search">
                             <p>
                             	<label for="criteria">Criteria</label>
-                                <input type="text" class="text" name="criteria" id="criteria"<?php if (isset($this->criteria)): ?><?php echo ' value="' . $this->criteria . '"'; ?><?php endif ?>>
+                                <input type="text" class="text" name="criteria" id="criteria"<?php if (isset($criteria)): ?><?php echo ' value="' . $criteria . '"'; ?><?php endif ?>>
                            		<input type="submit" value="Search Messages">
                            	</p>
                     </div>
@@ -15,19 +15,19 @@
                             <span>
                             	<select name="sender" id="sender">
                             		<option value="">Show all senders</option>
-                            		<?php //foreach ($this->senders as $sender): ?>
+                            		<?php //foreach ($senders as $sender): ?>
                             		<option<?php if (false && isset($this->sender) && $this->sender == $sender): ?><?php echo ' selected="selected"'; ?><?php endif ?>><?php //$this->eprint($sender) ?></option>
                             		<?php //endforeach ?>
                             	</select>
                             	<select name="dates" id="dates">
                             		<option value="">Show all dates</option>
-                            		<?php //foreach ($this->dates as $date): ?>
+                            		<?php //foreach ($dates as $date): ?>
                             		<option<?php if (false && isset($this->date) && $this->date == $date): ?><?php echo ' selected="selected"'; ?><?php endif ?>><?php //echo $date ?></option>
                             		<?php //endforeach ?>
                             	</select>
                         	</span>
                             <span style="float:right">
-                            	<?php //echo $this->pager ?>
+                            	<?php //echo $pager ?>
                             </span>
                         </div>
                         <div class="bd">
@@ -41,14 +41,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                	<?php //foreach ($this->messages as $message): ?>
+                                	<?php foreach ($messages as $message): ?>
                                     <tr>
-                                        <td class="protocol <?php //echo $message->protocol ?>"></td>
-                                        <td><?php //echo $message->sender ?></td>
-                                        <td class="gray"><?php //echo $message->content ?></td>
-                                        <td class="text-right"><?php //echo Logbox::fuzzy_time($message->sent_at) ?></td>
+                                        <td class="protocol <?php echo $message->protocol ?>"></td>
+                                        <td><?php echo $message->sender ?></td>
+                                        <td class="gray"><?php echo $message->content ?></td>
+                                        <td class="text-right"><?php echo date::fuzzy_time($message->sent_at) ?></td>
                                     </tr>
-                                    <?php //endforeach ?>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
