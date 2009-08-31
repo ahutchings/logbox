@@ -128,68 +128,52 @@ class Repository_Model extends ORM
      */
     public function import_pidgin_plaintext()
     {
-        $protocols = array_diff(scandir($this->directory), array('.', '..'));
+        $message_regex = '/^\((?P<sentat>.*?)\) (?P<sender>.*?): (?P<content>.*)/';
+        $status_regex  = '/\\((?P<sentat>.*)\\) (?P<sender>.*)\\ (?P<content>.*)/';
+        $file_regex    = '%/(?P<protocol>.*)/(?P<account>.*)/(?P<recipient>.*)/'
+            .'(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2}).(?P<hour>\d{2})(?P<minute>\d{2})(?P<second>\d{2})%';
 
-        foreach ($protocols as $protocol) {
-            $protocol_dir = "$this->directory/$protocol";
-            $accounts     = array_diff(scandir($protocol_dir), array('.', '..'));
+        foreach (dir::list_files($this->directory) as $path) {
 
-            foreach ($accounts as $account) {
-                $account_dir = $protocol_dir . '/' . $account;
-                $recipients = array_diff(scandir($account_dir), array('.', '..'));
+            // standardize path for the regex
+            $file = substr($path, strlen(implode(DIRECTORY_SEPARATOR, explode(DIRECTORY_SEPARATOR, $path, -4))));
+            $file = str_replace('\\', '/', $file);
 
-                foreach ($recipients as $recipient) {
-                    $recipient_dir = $account_dir . '/' . $recipient;
-                    $sessions      = array_diff(scandir($recipient_dir), array('.', '..'));
+            preg_match($file_regex, $file, $file_match);
 
-                    foreach ($sessions as $session) {
-                        $session_path = $recipient_dir . '/' . $session;
+            $lines = file($path);
 
-                        $message_regex = '/^\((?P<sentat>.*?)\) (?P<sender>.*?): (?P<content>.*)/';
-                        $status_regex  = '/\\((?P<sentat>.*)\\) (?P<sender>.*)\\ (?P<content>.*)/';
-                        $session_regex = '/(?P<year>\\d{4})-(?P<month>\\d{2})-(?P<day>\\d{2}).(?P<hour>\\d{2})(?P<minute>\\d{2})(?P<second>\\d{2})/';
+            for ($i = 1, $n = count($lines); $i < $n; $i++) {
 
-                        preg_match($session_regex, $session, $session_match);
+                // @todo match file transfers
 
-                        $session_handle = file($session_path);
+                // if we can match a message
+                if (preg_match($message_regex, $lines[$i], $message_match) === 1) {
 
-                        for ($i = 1, $n = count($session_handle); $i < $n; $i++) {
-
-                            // @todo match file transfers
-
-                            // if we can match a message
-                            if (preg_match($message_regex, $session_handle[$i], $message_match) === 1) {
-
-                                // skip failed AIM messages
-                                if ($message_match['sender'] == 'Unable to send message') {
-                                    continue;
-                                }
-
-                                // strip auto-reply text from the sender
-                                $message_match['sender'] = str_replace(' <AUTO-REPLY>', '', $message_match['sender']);
-
-                                $time = $session_match['year'] . '-' . $session_match['month'] . '-' . $session_match['day']
-                                    . '' . $message_match['sentat'];
-
-                                // save the message
-                                $message = new Message_Model();
-                                $message->sent_at   = strtotime($time);
-                                $message->protocol  = $protocol;
-                                $message->sender    = $message_match['sender'];
-                                $message->recipient = $recipient;
-                                $message->content   = $message_match['content'];
-    	                        $message->save();
-
-                            } elseif (preg_match($status_regex, $session_handle[$i], $status_match) === 1) {
-                                Kohana::log('info', 'Event matched.');
-                                // @todo save the status change
-                            } else {
-                                // @todo this is probably a multiline message
-                                $log = 'Unknown line type in file %s. Content: %s';
-                                Kohana::log('alert', sprintf($log, $session_path, $session_handle[$i]));
-                            }
-                        }
+                    // skip failed AIM messages
+                    if ($message_match['sender'] == 'Unable to send message') {
+                        continue;
                     }
+
+                    // strip auto-reply text from the sender
+                    $message_match['sender'] = str_replace(' <AUTO-REPLY>', '', $message_match['sender']);
+
+                    $time = $file_match['year'] .'-'. $file_match['month'] .'-'. $file_match['day']
+                        .' '. $message_match['sentat'];
+
+                    // save the message
+                    $message = new Message_Model();
+                    $message->sent_at   = strtotime($time);
+                    $message->protocol  = $file_match['protocol'];
+                    $message->sender    = $message_match['sender'];
+                    $message->recipient = $file_match['recipient'];
+                    $message->content   = $message_match['content'];
+                    $message->save();
+
+                } elseif (preg_match($status_regex, $lines[$i], $status_match) === 1) {
+                    // @todo save the status change
+                } else {
+                    // @todo this is probably a multiline message
                 }
             }
         }
