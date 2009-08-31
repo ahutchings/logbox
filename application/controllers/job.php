@@ -55,4 +55,30 @@ class Job_Controller extends Template_Controller
 		
 		url::redirect('job/index');
 	}
+	
+	public function edit($id)
+	{
+		$job = ORM::factory('job', $id);
+		
+		$priority_opts = array_combine(range(1, 10), range(1, 10));
+		
+		$this->template->content = View::factory('jobs/edit')
+			->set('job', $job)
+			->set('params', implode(unserialize($job->params), ','))
+			->set('priority_opts', $priority_opts);
+	}
+	
+	public function update()
+	{
+		$post = $this->input->post();
+		$job  = ORM::factory('job', $post['id']);
+		
+		if ($job->validate($post, true)) {
+			Session::instance()->set_flash('message', array('type' => 'success', 'text' => 'Job updated successfully.'));
+			url::redirect('job');
+		} else {
+			// @todo add error message
+			url::redirect('job/edit/'.$post['id']);
+		}
+	}
 }

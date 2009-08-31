@@ -67,7 +67,8 @@
                                         <td class="text-right"><?php echo $job->next_run ?></td>
                                         <td class="text-right">
                                         	<?php if ($job->name !== 'master'): ?>
-                                        	<a href="<?php echo url::site('job/delete/'.$job->id) ?>" title="Delete job">delete</a>
+                                        	<a href="<?php echo url::site("job/edit/$job->id") ?>" title="Edit job">edit</a>
+                                        	<a href="<?php echo url::site("job/delete/$job->id") ?>" title="Delete job">delete</a>
                                         	<?php endif ?>
                                     	</td>
                                     </tr>
