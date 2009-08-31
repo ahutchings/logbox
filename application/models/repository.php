@@ -158,12 +158,14 @@ class Repository_Model extends ORM
                     // strip auto-reply text from the sender
                     $message_match['sender'] = str_replace(' <AUTO-REPLY>', '', $message_match['sender']);
 
+                    // format time
                     $time = $file_match['year'] .'-'. $file_match['month'] .'-'. $file_match['day']
                         .' '. $message_match['sentat'];
+                    $time = date('Y-m-d H:i:s', strtotime($time));
 
                     // save the message
                     $message = new Message_Model();
-                    $message->sent_at   = strtotime($time);
+                    $message->sent_at   = $time;
                     $message->protocol  = $file_match['protocol'];
                     $message->sender    = $message_match['sender'];
                     $message->recipient = $file_match['recipient'];
