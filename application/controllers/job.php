@@ -4,7 +4,7 @@ class Job_Controller extends Template_Controller
 {
 	public function index()
 	{
-		$content = new View('jobs/index');
+		$content = new View('job/index');
 		$content->jobs = ORM::factory('job')->find_all();
 				
 		$this->template->content = $content;
@@ -27,7 +27,7 @@ class Job_Controller extends Template_Controller
 	
 	public function show($id)
 	{
-		$content = new View('jobs/view');
+		$content = new View('job/view');
 		$content->job = ORM::factory('job')->find($id);
 		
 		$this->template->content = $content;
@@ -62,7 +62,7 @@ class Job_Controller extends Template_Controller
 		
 		$priority_opts = array_combine(range(1, 10), range(1, 10));
 		
-		$this->template->content = View::factory('jobs/edit')
+		$this->template->content = View::factory('job/edit')
 			->set('job', $job)
 			->set('params', implode(unserialize($job->params), ','))
 			->set('priority_opts', $priority_opts);

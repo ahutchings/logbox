@@ -36,7 +36,7 @@
                                 <?php endforeach; ?>
                         		</tbody>
                             </table>
-                            <p><a class="button" href="/job/add/">Add a new job</a></p>
+                            <p><a class="button" href="/job/add">Add a new job</a></p>
                         </div>
                 	</div>
                 	
@@ -76,7 +76,7 @@
                                 <?php endforeach; ?>
                         		</tbody>
                             </table>
-                            <p><a class="button" href="/job/new/">Add a new job</a></p>
+                            <p><a class="button" href="/job/add">Add a new job</a></p>
                         </div>
                 	</div>
 
