@@ -16,38 +16,38 @@ class Repository_Model extends ORM
 
 	/**
 	 * Checks that the directory is unique.
-	 * 
+	 *
 	 * @param Validation $array Validation object
 	 * @param string     $field Name of field being validated
-	 * 
+	 *
 	 * @return null
 	 */
 	public function unique_directory(Validation $array, $field)
 	{
 		$exists = (bool) ORM::factory('repository')->where('directory', $array[$field])->count_all();
- 
+
 		if ($exists) {
 			$array->add_error($field, 'directory_exists');
 		}
 	}
-	
+
 	/**
 	 * Checks that the directory exists and is readable.
-	 * 
+	 *
 	 * @param Validation $array Validation object
 	 * @param string     $field Name of field being validated
-	 * 
+	 *
 	 * @return null
 	 */
 	public function readable_directory(Validation $array, $field)
 	{
 		$readable = @opendir($array[$field]);
-		
+
 		if (!$readable) {
-			$array->add_error($field, 'directory_unreadable');	
+			$array->add_error($field, 'directory_unreadable');
 		}
 	}
-	
+
 	/**
 	 * Imports messages from a repository.
 	 *
@@ -58,7 +58,7 @@ class Repository_Model extends ORM
 	public function import()
 	{
 	    set_time_limit(10000000);
-	    
+
 	    switch ($this->type) {
 	        case '0':
 	            $this->import_pidgin_plaintext();
@@ -68,36 +68,36 @@ class Repository_Model extends ORM
 	            return false;
 	    }
 	}
-	
+
 	/**
 	 * Imports messages from a repository.
-	 * 
+	 *
 	 * @param int $id Repository ID
-	 * 
+	 *
 	 * @return bool
 	 */
 	public static function import_by_id($id)
 	{
 		$repository = ORM::factory('repository', $id);
-		
+
 		return $repository->import();
 	}
-	
+
 	/**
 	 * Imports messages from an Adium XML repository.
 	 *
 	 * @return bool
 	 */
 	public function import_adium_xml()
-	{   
+	{
 	    $account_dirs = array_diff(scandir($this->directory), array('.', '..'));
-	    
+
 	    foreach ($account_dirs as $account_dir) {
 	        $recipients = array_diff(scandir("$this->directory/$account_dir"), array('.', '..'));
-	        
+
 	        foreach ($recipient_dirs as $recipient_dir) {
 	            $session_dirs = array_diff(scandir("$this->directory/$account_dir/$recipient_dir"), array('.', '..'));
-	            
+
 	            foreach ($session_dirs as $session_dir) {
 	                $session = array_diff(scandir("$this->directory/$account_dir/$recipient_dir/$session_dir"), array('.', '..'));
 	                $xml     = simplexml_load_file("$this->directory/$account_dir/$recipient_dir/$session_dir/$session");
@@ -115,23 +115,23 @@ class Repository_Model extends ORM
 
                         $message = new Message_Model();
 	                    $message->validate($data, true);
-	                }  
+	                }
 	            }
 	        }
 	    }
 	}
-	
+
     /**
      * Imports messages from a Pidgin plain text repository.
      *
      * @return bool
      */
-    public static function import_pidgin_plaintext()
+    public function import_pidgin_plaintext()
     {
         $protocols = array_diff(scandir($this->directory), array('.', '..'));
 
         foreach ($protocols as $protocol) {
-            $protocol_dir = Options::get('log_path') . '/' . $protocol;
+            $protocol_dir = "$this->directory/$protocol";
             $accounts     = array_diff(scandir($protocol_dir), array('.', '..'));
 
             foreach ($accounts as $account) {
@@ -171,24 +171,22 @@ class Repository_Model extends ORM
                                 $time = $session_match['year'] . '-' . $session_match['month'] . '-' . $session_match['day']
                                     . '' . $message_match['sentat'];
 
-                                $data = array(
-                                    'sent_at'    => strtotime($time),
-                                    'protocol'  => $protocol,
-                                    'sender'    => $message_match['sender'],
-                                    'recipient' => $recipient,
-                                    'content'   => $message_match['content']
-                                );
-
+                                // save the message
                                 $message = new Message_Model();
-    	                        $message->validate($data, true);                                	
-                                
+                                $message->sent_at   = strtotime($time);
+                                $message->protocol  = $protocol;
+                                $message->sender    = $message_match['sender'];
+                                $message->recipient = $recipient;
+                                $message->content   = $message_match['content'];
+    	                        $message->save();
+
                             } elseif (preg_match($status_regex, $session_handle[$i], $status_match) === 1) {
-                                trigger_error('Event matched.', E_USER_NOTICE);
+                                Kohana::log('info', 'Event matched.');
                                 // @todo save the status change
                             } else {
                                 // @todo this is probably a multiline message
                                 $log = 'Unknown line type in file %s. Content: %s';
-                                trigger_error(sprintf($log, $session_path, $session_handle[$i]), E_USER_WARNING);
+                                Kohana::log('alert', sprintf($log, $session_path, $session_handle[$i]));
                             }
                         }
                     }

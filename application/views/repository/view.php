@@ -6,7 +6,7 @@
                 <h2><?php echo $repository->directory ?></h2>
 
 				<p><?php echo $repository->type ?></p>
-				
+
 				<p>
 					<ul>
 						<li><a href="<?php echo url::site("repository/edit/$repository->id") ?>">edit</a></li>
