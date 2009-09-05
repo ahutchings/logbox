@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS accounts (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    protocol_id int NOT NULL REFERENCES protocols(`id`)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

@@ -43,7 +43,7 @@
                                 <tbody>
                                 	<?php foreach ($messages as $message): ?>
                                     <tr>
-                                        <td class="protocol <?php echo $message->protocol ?>"></td>
+                                        <td class="protocol <?php echo $message->conversation->account->protocol->name ?>"></td>
                                         <td><?php echo $message->sender ?></td>
                                         <td class="gray"><?php echo $message->content ?></td>
                                         <td class="text-right"><?php echo date::fuzzy_time($message->sent_at) ?></td>

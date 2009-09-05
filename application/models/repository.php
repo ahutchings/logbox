@@ -141,6 +141,50 @@ class Repository_Model extends ORM
 
             preg_match($file_regex, $file, $file_match);
 
+            // create entry for protocol
+            $protocol = ORM::factory('protocol')->where('name', $file_match['protocol'])->find();
+            if (!$protocol->loaded) {
+                $protocol->name = $file_match['protocol'];
+                $protocol->save();
+            }
+
+            // create entry for account
+            $account = ORM::factory('account')->where('name', $file_match['account'])->find();
+            if (!$account->loaded) {
+                $account->name = $file_match['account'];
+                $account->protocol_id = $protocol->id;
+                $account->save();
+            }
+
+            // create entry for buddy
+            $buddy = ORM::factory('buddy')->where('name', $file_match['recipient'])->find();
+            if (!$buddy->loaded) {
+                $buddy->name = $file_match['recipient'];
+                $buddy->account_id = $account->id;
+                $buddy->save();
+            }
+
+            // create entry for conversation
+            $conv_started_at = date('Y-m-d H:i:s', strtotime(
+                $file_match['year'].'-'.$file_match['month'].'-'.$file_match['day'].' '
+                .$file_match['hour'].':'.$file_match['minute'].':'.$file_match['second']
+            ));
+
+            $conversation = ORM::factory('conversation')
+                ->where(array(
+                	'account_id' => $account->id,
+                	'buddy_id' => $buddy->id,
+                    'started_at' => $conv_started_at
+                ))
+                ->find();
+
+            if (!$conversation->loaded) {
+                $conversation->account_id = $account->id;
+                $conversation->buddy_id   = $buddy->id;
+                $conversation->started_at = $conv_started_at;
+                $conversation->save();
+            }
+
             $lines = file($path);
 
             for ($i = 1, $n = count($lines); $i < $n; $i++) {
@@ -165,8 +209,8 @@ class Repository_Model extends ORM
 
                     // save the message
                     $message = new Message_Model();
+                    $message->conversation_id = $conversation->id;
                     $message->sent_at   = $time;
-                    $message->protocol  = $file_match['protocol'];
                     $message->sender    = $message_match['sender'];
                     $message->recipient = $file_match['recipient'];
                     $message->content   = $message_match['content'];
