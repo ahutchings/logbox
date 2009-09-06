@@ -89,7 +89,6 @@ class Pidgin_Plaintext_Importer extends Repository_Importer
                     $message->conversation_id = $conversation->id;
                     $message->sent_at   = $time;
                     $message->sender    = $message_match['sender'];
-                    $message->recipient = $path_match['buddy'];
                     $message->content   = $message_match['content'];
                     $message->save();
 
