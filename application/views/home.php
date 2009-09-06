@@ -15,19 +15,19 @@
                             <span>
                             	<select name="sender" id="sender">
                             		<option value="">Show all senders</option>
-                            		<?php //foreach ($senders as $sender): ?>
-                            		<option<?php if (false && isset($this->sender) && $this->sender == $sender): ?><?php echo ' selected="selected"'; ?><?php endif ?>><?php //$this->eprint($sender) ?></option>
-                            		<?php //endforeach ?>
+                            		<?php foreach ($senders as $sender): ?>
+                            		<option<?php if (isset($selected_sender) && $selected_sender == $sender): ?><?php echo ' selected="selected"'; ?><?php endif ?>><?php echo $sender ?></option>
+                            		<?php endforeach ?>
                             	</select>
                             	<select name="dates" id="dates">
                             		<option value="">Show all dates</option>
-                            		<?php //foreach ($dates as $date): ?>
-                            		<option<?php if (false && isset($this->date) && $this->date == $date): ?><?php echo ' selected="selected"'; ?><?php endif ?>><?php //echo $date ?></option>
-                            		<?php //endforeach ?>
+                            		<?php foreach ($dates as $date): ?>
+                            		<option<?php if (isset($selected_date) && $selected_date == $date): ?><?php echo ' selected="selected"'; ?><?php endif ?>><?php echo $date ?></option>
+                            		<?php endforeach ?>
                             	</select>
                         	</span>
                             <span style="float:right">
-                            	<?php //echo $pager ?>
+                            	<?php echo $pagination->render('digg') ?>
                             </span>
                         </div>
                         <div class="bd">

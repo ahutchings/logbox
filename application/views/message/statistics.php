@@ -10,14 +10,14 @@
                         	<script language="javascript" type="text/javascript">
                             $(function () {
                                 var d1 = [
-								<?php for ($i = 0; $i < count($this->messages_by_sender); $i++): ?>
-								[<?php echo $i . ',' . $this->messages_by_sender[$i]['count'] ?>],
+								<?php for ($i = 0; $i < count($messages_by_sender); $i++): ?>
+								[<?php echo $i . ',' . $messages_by_sender[$i]->count ?>],
 								<?php endfor ?>
                             	];
 
                             	var xaxis_ticks = [
-   								<?php for ($i = 0; $i < count($this->messages_by_sender); $i++): ?>
-								[<?php echo $i . ',"' . $this->messages_by_sender[$i]['sender'] ?>"],
+   								<?php for ($i = 0; $i < count($messages_by_sender); $i++): ?>
+								[<?php echo $i . ',"' . $messages_by_sender[$i]->sender ?>"],
 								<?php endfor ?>
                                	];
 
@@ -36,8 +36,8 @@
                         	<script language="javascript" type="text/javascript">
                             $(function () {
                                 var d1 = [
-								<?php foreach ($this->messages_by_month as $data): ?>
-								[<?php echo $data['timestamp'] * 1000 ?>, <?php echo $data['count'] ?>],
+								<?php foreach ($messages_by_month as $data): ?>
+								[<?php echo $data->timestamp * 1000 ?>, <?php echo $data->count ?>],
 								<?php endforeach ?>
                             	]
 
